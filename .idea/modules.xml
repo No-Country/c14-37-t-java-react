@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/listacheck.iml" filepath="$PROJECT_DIR$/.idea/listacheck.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/c14-37-t-java-react1.iml" filepath="$PROJECT_DIR$/.idea/c14-37-t-java-react1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/listacheck/listacheck.iml" filepath="$PROJECT_DIR$/listacheck/listacheck.iml" />
     </modules>
   </component>
 </project>
