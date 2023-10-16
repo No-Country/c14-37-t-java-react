@@ -13,7 +13,8 @@ public class BrandServiceImpl implements IBrandService {
     @Autowired
     private IBrandRepository brandRepository;
 
-    // This method is used to create a brand.
+    // This method is used to create a brand or many as an array.
+    // If you want to create just ONE brand, you need to add it inside an array anyway, with one object.
     @Override
     public List<Brand> createBrand(List<Brand> brands) {
         brandRepository.saveAll(brands);
@@ -34,8 +35,13 @@ public class BrandServiceImpl implements IBrandService {
 
     // This method is used to find a brand by ID.
     @Override
-    public Brand findBrand(Long id_brand) {
+    public Brand findBrandById(Long id_brand) {
         return brandRepository.findById(id_brand).orElse(null);
+    }
+
+    @Override
+    public Brand findBrandByName(String name) {
+        return brandRepository.findByName(name);
     }
 
     // This method is used to update a brand by ID.

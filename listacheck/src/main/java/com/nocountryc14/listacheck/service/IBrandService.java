@@ -12,7 +12,10 @@ public interface IBrandService {
 
     public void deleteBrand(Long id_brand);
 
-    public Brand findBrand(Long id_brand);
+    public Brand findBrandById(Long id_brand);
+
+    public Brand findBrandByName(String name);
 
     public Brand updateBrand(Long id_brand, Brand updatedBrand);
+
 }

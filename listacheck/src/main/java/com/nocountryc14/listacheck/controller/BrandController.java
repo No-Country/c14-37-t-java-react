@@ -8,20 +8,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/brand")
 public class BrandController {
 
     @Autowired
     private IBrandService brandService;
 
     // Create
-    @PostMapping("/brand/create")
+    @PostMapping("/create")
     public String createBrand(@RequestBody List<Brand> brands) {
         brandService.createBrand(brands);
-        return "The brands have been created successfully.";
+        return "The brands " + brands.toString() + " have been created successfully.";
     }
 
     // Get
-    @GetMapping("/brand/get")
+    @GetMapping("/get")
     public String getBrand() {
 
         List<Brand> brands = brandService.getBrand();
@@ -34,24 +35,24 @@ public class BrandController {
     }
 
     // Delete
-    @DeleteMapping("/brand/delete/{id_brand}")
+    @DeleteMapping("/delete/{id_brand}")
     public String deleteBrand(@PathVariable Long id_brand) {
 
-        Brand brand = brandService.findBrand(id_brand);
+        Brand brand = brandService.findBrandById(id_brand);
 
         if (brand != null) {
             brandService.deleteBrand(id_brand);
-            return "The brand has been deleted successfully.";
+            return "The brand " + brand.toString() + " has been deleted successfully.";
         } else {
             return "There is no brand with this ID to delete.";
         }
     }
 
     // Find
-    @GetMapping("/brand/{id_brand}")
-    public String findBrand(@PathVariable Long id_brand) {
+    @GetMapping("/{id_brand}")
+    public String findBrandById(@PathVariable Long id_brand) {
 
-        Brand brand = brandService.findBrand(id_brand);
+        Brand brand = brandService.findBrandById(id_brand);
 
         if (brand != null) {
             return brand.toString();
@@ -60,15 +61,26 @@ public class BrandController {
         }
     }
 
+    @GetMapping("/findByName")
+    public String findBrandByName(@RequestParam String name) {
+        Brand brand = brandService.findBrandByName(name);
+
+        if (brand != null) {
+            return brand.toString();
+        } else {
+            return "There is no brand with this name.";
+        }
+    }
+
     // Update
-    @PutMapping("/brand/update/{id_brand}")
+    @PutMapping("/update/{id_brand}")
     public String updateBrand (@PathVariable Long id_brand, @RequestBody Brand updatedBrand) {
 
-        Brand brand = brandService.findBrand(id_brand);
+        Brand brand = brandService.findBrandById(id_brand);
 
         if (brand != null) {
             brandService.updateBrand(id_brand, updatedBrand);
-            return "The brand has been updated successfully.";
+            return "The brand " + brand.toString() + " has been updated successfully.";
         } else {
             return "There is no brand with this ID to update.";
         }
