@@ -12,13 +12,13 @@ import com.nocountryc14.listacheck.model.List;
 @Service
 public class ListServiceImpl implements IListService {
 
-    private final ListMapper listMapper;
+
     private final ListRepository listRepository;
 
     @Autowired
-    public ListServiceImpl(ListRepository listRepository, ListMapper listMapper) {
+    public ListServiceImpl(ListRepository listRepository) {
         this.listRepository = listRepository;
-        this.listMapper = listMapper;
+
     }
 
     @Override
@@ -28,8 +28,12 @@ public class ListServiceImpl implements IListService {
         if(existingList != null) {
             throw new RuntimeException("List already exists");
         }
-        List list = listMapper.fromDto(listDto);
-        return null;
+
+        List list = ListMapper.INSTANCE.fromDto(listDto);
+
+        List listCreated = listRepository.save(list);
+
+        return ListMapper.INSTANCE.toDto(listCreated);
     }
 
     @Override

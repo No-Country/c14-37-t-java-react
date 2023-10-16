@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 @Mapper
 public interface BrandMapper {
-
+        BrandMapper INSTANCE = org.mapstruct.factory.Mappers.getMapper(BrandMapper.class);
         BrandDto toDto(Brand brand);
 
         Brand fromDto(BrandDto brandDto);

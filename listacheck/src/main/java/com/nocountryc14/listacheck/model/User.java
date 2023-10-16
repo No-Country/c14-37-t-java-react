@@ -7,6 +7,7 @@ import java.util.Collection;
 
 @Entity
 @Data
+@Table(name = "APP_USER")
 public class User {
 
 

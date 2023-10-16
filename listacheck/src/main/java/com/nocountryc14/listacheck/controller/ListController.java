@@ -32,11 +32,12 @@ public class ListController {
     }
 
     @PostMapping("/list/new")
-    public String newList(@RequestBody ListDto listDto) {
-        listService.createList(listDto);
-
-
-        return "listform";
+    public ResponseEntity<ListDto> createList(@RequestBody ListDto listDto) throws RuntimeException {
+        if (listDto.getListName() != null) {
+            throw new RuntimeException("List must have a name");
+        }
+        ListDto createdList = listService.createList(listDto);
+        return new ResponseEntity<>(createdList, HttpStatus.CREATED);
     }
 /*
     @PostMapping("/list")
