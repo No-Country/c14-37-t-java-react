@@ -2,10 +2,12 @@ package com.nocountryc14.listacheck.model;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Collection;
 @Entity
+@Data
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +22,5 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     private Collection<List> lists = new ArrayList<>();
+
 }

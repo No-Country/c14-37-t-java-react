@@ -24,4 +24,5 @@ public class User {
     private Collection<List> lists;
 
 
+
 }

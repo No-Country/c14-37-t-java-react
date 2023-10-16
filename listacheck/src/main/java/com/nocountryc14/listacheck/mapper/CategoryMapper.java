@@ -2,14 +2,26 @@ package com.nocountryc14.listacheck.mapper;
 
 import com.nocountryc14.listacheck.dto.CategoryDto;
 import com.nocountryc14.listacheck.model.Category;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
-@Mapper
-public interface CategoryMapper {
+@Component
+public class CategoryMapper {
+    public static CategoryDto categoryDto(Category category){
+        CategoryDto categoryDto = new CategoryDto();
+        if(category.getCategoryId() != null){
+            categoryDto.setCategoryId(category.getCategoryId());
+        }
+        categoryDto.setCategoryName(category.getCategoryName());
 
-            CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
-            CategoryDto toDto(Category category);
+        return categoryDto;
+    }
+    public static Category category(CategoryDto categoryDto){
+        Category category = new Category();
+        if(categoryDto.getCategoryId() != null){
+            category.setCategoryId(categoryDto.getCategoryId());
+        }
+        category.setCategoryName(categoryDto.getCategoryName());
 
-            Category fromDto(CategoryDto categoryDto);
+        return category;
+    }
 }

@@ -24,16 +24,17 @@ public class ListServiceImpl implements IListService {
     @Override
     public ListDto createList(ListDto listDto) {
         Long listId = listDto.getListId();
-        List existingList = listRepository.findById(listId).orElse(null);
-        if(existingList != null) {
+
+        if(listId != null) {
             throw new RuntimeException("List already exists");
         }
 
-        List list = ListMapper.INSTANCE.fromDto(listDto);
+
+        List list = ListMapper.toList(listDto);
 
         List listCreated = listRepository.save(list);
 
-        return ListMapper.INSTANCE.toDto(listCreated);
+        return ListMapper.toListDto(listCreated);
     }
 
     @Override

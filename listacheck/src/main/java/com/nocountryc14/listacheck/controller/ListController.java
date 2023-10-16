@@ -33,7 +33,8 @@ public class ListController {
 
     @PostMapping("/list/new")
     public ResponseEntity<ListDto> createList(@RequestBody ListDto listDto) throws RuntimeException {
-        if (listDto.getListName() != null) {
+        System.out.println("List name: " + listDto.getListName());
+        if (listDto.getListName() == null) {
             throw new RuntimeException("List must have a name");
         }
         ListDto createdList = listService.createList(listDto);
