@@ -12,38 +12,40 @@ import java.util.Optional;
 @Service
 public class CategoryService implements ICategoryService {
 
-    private final ICategoryRepository iCategoryRepository;
 
     @Autowired
-    public CategoryService(ICategoryRepository iCategoryRepository) {
-        this.iCategoryRepository = iCategoryRepository;
-    }
+    private ICategoryRepository categoryRepository;
+
 
     //CREATE
     @Override
-    public void saveCategory(Category prod) {
-        iCategoryRepository.save(prod);
+    public void createCategory(Category prod) {
+        categoryRepository.save(prod);
     }
 
     //READ
     @Override
     public List<Category> getCategory() {
-        List<Category> listCategory = iCategoryRepository.findAll();
-        return listCategory;
+        return categoryRepository.findAll();
     }
 
     //DELETE
     @Override
     public void deleteCategory(Long id_category) {
-        iCategoryRepository.deleteById(id_category);
+        categoryRepository.deleteById(id_category);
     }
 
     //SEARCH
     @Override
     public Category findCategory(Long id_category) {
-        //si no encuentro el producto devuelvo null;
-        Category category = iCategoryRepository.findById(id_category).orElse(null);
-        return category;
+        return categoryRepository.findById(id_category).orElse(null);
     }
+
+    //UPDATE
+    @Override
+    public void updateCategory(Long id_category, Category category) {
+        categoryRepository.deleteById(id_category);
+    }
+
 
 }

@@ -7,9 +7,10 @@ import java.util.List;
 public interface ICategoryService {
 
 
-    void saveCategory(Category prod);
+    void createCategory(Category category);
     public List<Category> getCategory();
     public void deleteCategory(Long id_category);
     public Category findCategory(Long id_category);
+    public void updateCategory(Long id_category, Category category);
 
 }
