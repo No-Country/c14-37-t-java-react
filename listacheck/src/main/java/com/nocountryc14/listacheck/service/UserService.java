@@ -3,16 +3,18 @@ package com.nocountryc14.listacheck.service;
 
 import com.nocountryc14.listacheck.model.User;
 import com.nocountryc14.listacheck.repository.IUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class UserService implements  IUserService  {
 
-
+    @Autowired
     private IUserRepository userRepository;
 
    //Create
+
     @Override
     public void saveUser(User user){
      userRepository.save(user);
