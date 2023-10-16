@@ -1,4 +1,4 @@
 package com.nocountryc14.listacheck.controller;
 
-public class UsuarioController {
+public class CategoryController {
 }
