@@ -33,6 +33,7 @@ public class BrandController {
         }
     }
 
+    // Delete
     @DeleteMapping("/brand/delete/{id_brand}")
     public String deleteBrand(@PathVariable Long id_brand) {
 
@@ -46,6 +47,7 @@ public class BrandController {
         }
     }
 
+    // Find
     @GetMapping("/brand/{id_brand}")
     public String findBrand(@PathVariable Long id_brand) {
 
@@ -58,6 +60,7 @@ public class BrandController {
         }
     }
 
+    // Update
     @PutMapping("/brand/update/{id_brand}")
     public String updateBrand (@PathVariable Long id_brand, @RequestBody Brand updatedBrand) {
 
