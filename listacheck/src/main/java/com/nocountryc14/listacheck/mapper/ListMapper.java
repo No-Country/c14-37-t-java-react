@@ -12,7 +12,10 @@ public class ListMapper {
             listDto.setListId(list.getListId());
         }
         listDto.setListName(list.getListName());
-        listDto.setListUser(UserMapper.toUserDto(list.getListUser()));
+        if(list.getListUser() != null){
+
+            listDto.setListUser(UserMapper.toUserDto(list.getListUser()));
+        }
         //listDto.setProducts(ProductMapper.toProductDto(list.getProducts()));
         return listDto;
     }
@@ -22,7 +25,9 @@ public class ListMapper {
             list.setListId(listDto.getListId());
         }
         list.setListName(listDto.getListName());
-        list.setListUser(UserMapper.toUser(listDto.getListUser()));
+        if(listDto.getListUser() != null){
+            list.setListUser(UserMapper.toUser(listDto.getListUser()));
+        }
         //list.setProducts(ProductMapper.toProduct(listDto.getProducts()));
         return list;
     }
