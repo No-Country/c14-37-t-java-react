@@ -29,13 +29,17 @@ public List<User> getUser(){
 
 //DELETE/BAJA
 
-@DeleteMapping("user/delete/{id}")
+@DeleteMapping("users/delete/{id}")
 public String deleteUser(@PathVariable Long id_user){
     userService.deleteUser(id_user);
     //devuelvo String q se creo correctamente
-    return "El producto fue borrado correctamente";
+    return "El usuario fue borrado correctamente";
 }
 
+//BUSQUEDA por id
+public void findUser(Long id_user){
+        userService.findUser(id_user);
+       }
 
 
 }
