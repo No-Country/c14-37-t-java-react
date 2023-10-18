@@ -9,22 +9,26 @@ public class UserMapper {
 
     public static UserDto toUserDto(User user){
         UserDto userDto = new UserDto();
-        if(user.getUserId() != null){
-            userDto.setUserId(user.getUserId());
+        if(user.getUserId(userDto.getUserId()) != null){
+            userDto.setUserId(user.getUserId(userDto.getUserId()));
         }
-        userDto.setName(user.getName());
-        userDto.setEmail(user.getEmail());
+        userDto.getFirstName();
+        userDto.getLastName();
+        userDto.getEmail();
         userDto.setPassword(user.getPassword());
 
         return userDto;
     }
     public static User toUser(UserDto userDto){
         User user = new User();
+
         if(userDto.getUserId() != null){
-            user.setUserId(userDto.getUserId());
+            user.getUserId(userDto.getUserId());
+
         }
-        user.setName(userDto.getName());
-        user.setEmail(userDto.getEmail());
+        user.setFirstName(userDto.getFirstName());
+        user.setMail(userDto.getEmail());
+
         user.setPassword(userDto.getPassword());
         return user;
     }

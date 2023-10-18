@@ -101,4 +101,9 @@ import jakarta.persistence.*;
                 '}';
     }
 
+   public Long getUserId(Long userId) {
+        return null;
+    }
+
+
 }
