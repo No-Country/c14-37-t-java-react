@@ -8,6 +8,8 @@ public class ListacheckApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ListacheckApplication.class, args);
+
+
 	}
 
 }
