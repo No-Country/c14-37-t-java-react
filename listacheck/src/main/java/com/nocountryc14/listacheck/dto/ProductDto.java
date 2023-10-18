@@ -6,11 +6,11 @@ import lombok.Data;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class ProductDto {
-    private Long productId;
+    private Long id_product;
 
-    private String productName;
+    private String name_product;
 
-    private Integer stock;
+    private int stock;
 
     private CategoryDto category;
 

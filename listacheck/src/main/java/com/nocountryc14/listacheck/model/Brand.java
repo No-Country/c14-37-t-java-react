@@ -5,8 +5,11 @@ package com.nocountryc14.listacheck.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Collection;
 
 @Entity
 @Data
@@ -17,11 +20,14 @@ public class Brand {
     @GeneratedValue
     private Long brandId;
 
-    private String name;
+    private String brandName;
 
     public Brand(String name) {
-        this.name = name;
+        this.brandName = name;
     }
+
+    @OneToMany(mappedBy = "brand")
+    private Collection<Product> products;
 
     @Override
     public String toString() {

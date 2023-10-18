@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 public class ProductMapper {
     public static ProductDto toProductDto(Product product){
         ProductDto productDto = new ProductDto();
-        if(product.getProductId() != null){
-            productDto.setProductId(product.getProductId());
+        if(product.getId_product() != null){
+            productDto.setId_product(product.getId_product());
         }
-        productDto.setProductName(product.getProductName());
+        productDto.setName_product(product.getName_product());
         productDto.setStock(product.getStock());
+
         productDto.setCategory(CategoryMapper.categoryDto(product.getCategory()));
 
         return productDto;

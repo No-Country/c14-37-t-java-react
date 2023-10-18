@@ -1,35 +1,34 @@
 package com.nocountryc14.listacheck.mapper;
 
-import com.nocountryc14.listacheck.dto.ListDto;
-import com.nocountryc14.listacheck.model.List;
+import com.nocountryc14.listacheck.dto.ShopList;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ListMapper {
-    public static ListDto toListDto(List list){
-        ListDto listDto = new ListDto();
-        if(list.getListId() != null){
-            listDto.setListId(list.getListId());
+    public static ShopList toListDto(com.nocountryc14.listacheck.model.ShopList shopList){
+        ShopList listDto = new ShopList();
+        if(shopList.getListId() != null){
+            listDto.setListId(shopList.getListId());
         }
-        listDto.setListName(list.getListName());
-        if(list.getListUser() != null){
+        listDto.setListName(shopList.getListName());
+        if(shopList.getListUser() != null){
 
-            listDto.setListUser(UserMapper.toUserDto(list.getListUser()));
+            listDto.setListUser(UserMapper.toUserDto(shopList.getListUser()));
         }
         //listDto.setProducts(ProductMapper.toProductDto(list.getProducts()));
         return listDto;
     }
-    public static List toList(ListDto listDto){
-        List list = new List();
+    public static com.nocountryc14.listacheck.model.ShopList toList(ShopList listDto){
+        com.nocountryc14.listacheck.model.ShopList shopList = new com.nocountryc14.listacheck.model.ShopList();
         if(listDto.getListId() != null){
-            list.setListId(listDto.getListId());
+            shopList.setListId(listDto.getListId());
         }
-        list.setListName(listDto.getListName());
+        shopList.setListName(listDto.getListName());
         if(listDto.getListUser() != null){
-            list.setListUser(UserMapper.toUser(listDto.getListUser()));
+            shopList.setListUser(UserMapper.toUser(listDto.getListUser()));
         }
         //list.setProducts(ProductMapper.toProduct(listDto.getProducts()));
-        return list;
+        return shopList;
     }
 
 }
