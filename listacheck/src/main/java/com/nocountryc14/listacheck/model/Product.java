@@ -1,5 +1,6 @@
 package com.nocountryc14.listacheck.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,4 +21,5 @@ public class Product {
         this.name_product = name_product;
         this.stock = stock;
     }
+
 }
