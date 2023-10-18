@@ -35,9 +35,8 @@ public String deleteUser(@PathVariable Long id_user){
     //devuelvo String q se creo correctamente
     return "El usuario fue borrado correctamente";
 }
-
 //BUSQUEDA por id
-public void findUser(Long id_user){
+    public void findUser(Long id_user){
         userService.findUser(id_user);
        }
 
