@@ -8,17 +8,17 @@ import java.util.Collection;
 
 @Entity
 @Data
-public class List {
+public class ShopList {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long listId;
+    private Long shopListId;
 
-    private String listName;
+    private String shopListName;
 
     @ManyToOne
-    private User listUser;
+    private User  shopListUser;
 
     @ManyToMany
     @JoinTable(

@@ -1,7 +1,8 @@
-package com.nocountryc14.listacheck.service;
+package com.nocountryc14.listacheck.service.implementation;
 
 import com.nocountryc14.listacheck.model.Product;
 import com.nocountryc14.listacheck.repository.IProductRepository;
+import com.nocountryc14.listacheck.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

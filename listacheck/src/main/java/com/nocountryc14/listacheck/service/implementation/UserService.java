@@ -1,14 +1,15 @@
-package com.nocountryc14.listacheck.service;
+package com.nocountryc14.listacheck.service.implementation;
 
 
 import com.nocountryc14.listacheck.model.User;
 import com.nocountryc14.listacheck.repository.IUserRepository;
+import com.nocountryc14.listacheck.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class UserService implements  IUserService  {
+public class UserService implements IUserService {
 
     @Autowired
     private IUserRepository userRepository;

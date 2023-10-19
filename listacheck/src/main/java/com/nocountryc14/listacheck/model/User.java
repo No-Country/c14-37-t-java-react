@@ -5,6 +5,8 @@ package com.nocountryc14.listacheck.model;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
+
 @Entity
 @Table(name = "APP_USER")
  public class User {
@@ -13,7 +15,7 @@ import jakarta.persistence.*;
 
     @Id
     @GeneratedValue
-    private Long Id;
+    private Long userId;
 
     @Column(name ="firstName")
     private String firstName;
@@ -21,9 +23,12 @@ import jakarta.persistence.*;
     @Column(name= "lastName")
     private  String lastName;
 
-    private String mail;
+    private String email;
 
     private String password;
+
+    @OneToMany(mappedBy = "shopListUser")
+    private Collection<ShopList> shoplists;
 
 //Constructores
 
@@ -31,10 +36,10 @@ import jakarta.persistence.*;
     }
 
     public User(Long id, String firstName, String lastName, String mail, String password) {
-        Id = id;
+        userId = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.mail = mail;
+        this.email = mail;
         this.password = password;
 
     }
@@ -42,7 +47,7 @@ import jakarta.persistence.*;
     public User(String firstName, String lastName, String mail, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.mail = mail;
+        this.email = mail;
         this.password = password;
     }
 
@@ -50,11 +55,11 @@ import jakarta.persistence.*;
 
 
     public Long getId() {
-        return Id;
+        return userId;
     }
 
     public void setId(Long id) {
-        Id = id;
+        userId = id;
     }
 
     public String getFirstName() {
@@ -74,11 +79,11 @@ import jakarta.persistence.*;
     }
 
     public String getMail() {
-        return mail;
+        return email;
     }
 
     public void setMail(String mail) {
-        this.mail = mail;
+        this.email = mail;
     }
 
     public String getPassword() {
@@ -93,10 +98,10 @@ import jakarta.persistence.*;
     @Override
     public String toString() {
         return "User{" +
-                "Id=" + Id +
+                "Id=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", mail='" + mail + '\'' +
+                ", mail='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
