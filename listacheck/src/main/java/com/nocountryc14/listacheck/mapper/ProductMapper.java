@@ -31,10 +31,10 @@ public class ProductMapper {
      */
     public static Product toProduct(ProductDto productDto){
         Product product = new Product();
-        if(productDto.getProductId() != null){
-            product.setProductId(productDto.getProductId());
+        if(productDto.getId_product() != null){
+            product.setId_product(productDto.getId_product());
         }
-        product.setProductName(productDto.getProductName());
+        product.setName_product(productDto.getName_product());
         product.setStock(productDto.getStock());
         product.setCategory(CategoryMapper.category(productDto.getCategory()));
         return product;

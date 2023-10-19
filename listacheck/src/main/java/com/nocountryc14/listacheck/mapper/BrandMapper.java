@@ -9,7 +9,7 @@ public class BrandMapper {
         if(brand.getBrandId() != null){
             brandDto.setBrandId(brand.getBrandId());
         }
-        
+
 
         brandDto.setBrandName(brand.getBrandName());
 

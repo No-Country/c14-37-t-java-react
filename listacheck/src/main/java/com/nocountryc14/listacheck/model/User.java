@@ -27,7 +27,7 @@ import java.util.Collection;
 
     private String password;
 
-    @OneToMany(mappedBy = "shoplistUser")
+    @OneToMany(mappedBy = "shopListUser")
     private Collection<ShopList> shoplists;
 
 //Constructores

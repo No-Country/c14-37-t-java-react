@@ -7,13 +7,13 @@ import java.util.Collection;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
-public class ShopList {
+public class ShopListDto {
 
-    private Long listId;
+    private Long shopListId;
 
-    private String listName;
+    private String shopListName;
 
-    private UserDto listUser;
+    private UserDto shopListUser;
 
     private Collection<ProductDto> products;
 }

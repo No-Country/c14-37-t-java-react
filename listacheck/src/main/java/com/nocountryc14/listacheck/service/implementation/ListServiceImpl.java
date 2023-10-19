@@ -1,7 +1,7 @@
 package com.nocountryc14.listacheck.service.implementation;
 
-import com.nocountryc14.listacheck.dto.ShopList;
-import com.nocountryc14.listacheck.mapper.ListMapper;
+import com.nocountryc14.listacheck.dto.ShopListDto;
+import com.nocountryc14.listacheck.mapper.ShoplistMapper;
 import com.nocountryc14.listacheck.repository.ListRepository;
 import com.nocountryc14.listacheck.service.IListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,36 +22,36 @@ public class ListServiceImpl implements IListService {
     }
 
     @Override
-    public ShopList createList(ShopList listDto) {
-        Long listId = listDto.getListId();
+    public ShopListDto createList(ShopListDto listDto) {
+        Long shopListId = listDto.getShopListId();
 
-        if(listId != null) {
+        if(shopListId != null) {
             throw new RuntimeException("List already exists");
         }
-        com.nocountryc14.listacheck.model.ShopList shopList = ListMapper.toList(listDto);
+        com.nocountryc14.listacheck.model.ShopList shopList = ShoplistMapper.toList(listDto);
 
         com.nocountryc14.listacheck.model.ShopList shopListCreated = listRepository.save(shopList);
 
-        return ListMapper.toListDto(shopListCreated);
+        return ShoplistMapper.toListDto(shopListCreated);
     }
 
     @Override
-    public ShopList getListById(Long listId) {
+    public ShopListDto getListById(Long listId) {
         return null;
     }
 
     @Override
-    public Collection<ShopList> getAllLists() {
+    public Collection<ShopListDto> getAllLists() {
         return null;
     }
 
     @Override
-    public ShopList updateList(Long listId, ShopList shopList) {
+    public ShopListDto updateList(Long listId, ShopListDto shopList) {
         return null;
     }
 
     @Override
-    public ShopList deleteList(Long listId) {
+    public ShopListDto deleteList(Long listId) {
         return null;
     }
 }

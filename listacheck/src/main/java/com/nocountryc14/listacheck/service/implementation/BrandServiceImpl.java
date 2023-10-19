@@ -1,7 +1,8 @@
-package com.nocountryc14.listacheck.service;
+package com.nocountryc14.listacheck.service.implementation;
 
 import com.nocountryc14.listacheck.model.Brand;
 import com.nocountryc14.listacheck.repository.IBrandRepository;
+import com.nocountryc14.listacheck.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class BrandServiceImpl implements IBrandService {
 
     @Override
     public Brand findBrandByName(String name) {
-        return brandRepository.findByName(name);
+        return brandRepository.findByBrandName(name);
     }
 
     // This method is used to update a brand by ID.
@@ -50,7 +51,7 @@ public class BrandServiceImpl implements IBrandService {
         Brand existingBrand = brandRepository.findById(id_brand).orElse(null);
 
         // Update the existing brand with the new brand's values.
-        existingBrand.setName(updatedBrand.getName());
+        existingBrand.setBrandName(updatedBrand.getBrandName());
 
         // Save the updated existing brand on the database.
         return brandRepository.save(existingBrand);

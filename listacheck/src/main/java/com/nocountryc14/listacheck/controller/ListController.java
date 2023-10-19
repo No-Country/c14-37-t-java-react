@@ -1,6 +1,6 @@
 package com.nocountryc14.listacheck.controller;
 
-import com.nocountryc14.listacheck.dto.ShopList;
+import com.nocountryc14.listacheck.dto.ShopListDto;
 import com.nocountryc14.listacheck.service.IListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,18 +24,18 @@ public class ListController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Collection<ShopList>> getAllLists() {
-        Collection<ShopList> lists = listService.getAllLists();
+    public ResponseEntity<Collection<ShopListDto>> getAllLists() {
+        Collection<ShopListDto> lists = listService.getAllLists();
         return new ResponseEntity<>(lists, HttpStatus.OK);
     }
 
     @PostMapping("/list/new")
-    public ResponseEntity<ShopList> createList(@RequestBody ShopList shopList) throws RuntimeException {
-        System.out.println("List name: " + shopList.getListName());
-        if (shopList.getListName() == null) {
+    public ResponseEntity<ShopListDto> createList(@RequestBody ShopListDto shopList) throws RuntimeException {
+        System.out.println("List name: " + shopList.getShopListName());
+        if (shopList.getShopListName() == null) {
             throw new RuntimeException("List must have a name");
         }
-        ShopList createdList = listService.createList(shopList);
+        ShopListDto createdList = listService.createList(shopList);
         return new ResponseEntity<>(createdList, HttpStatus.CREATED);
     }
 /*

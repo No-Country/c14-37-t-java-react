@@ -13,12 +13,12 @@ public class ShopList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long shoplistId;
+    private Long shopListId;
 
-    private String shoplistName;
+    private String shopListName;
 
     @ManyToOne
-    private User  shoplistUser;
+    private User  shopListUser;
 
     @ManyToMany
     @JoinTable(

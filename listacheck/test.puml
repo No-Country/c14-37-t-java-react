@@ -1,0 +1,18 @@
+@startuml
+class com.nocountryc14.listacheck.controller.ProductController {
+- IProductService prodService
++ String createProduct(Product)
++ String createBrand(List<Brand>)
+
++ String findBrandById(Long)
++ String findBrandByName(String)
++ String updateBrand(Long,Brand)
+}
+class com.nocountryc14.listacheck.controller.UserController {
+- IUserService userService
++ String createUser(User)
++ List<User> getUser()
++ String deleteUser(Long)
++ void findUser(Long)
+}
+@enduml
