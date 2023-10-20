@@ -2,12 +2,15 @@ package com.nocountryc14.listacheck.service.implementation;
 
 import com.nocountryc14.listacheck.dto.ShopListDto;
 import com.nocountryc14.listacheck.mapper.ShoplistMapper;
+import com.nocountryc14.listacheck.model.ShopList;
 import com.nocountryc14.listacheck.repository.ListRepository;
 import com.nocountryc14.listacheck.service.IListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ListServiceImpl implements IListService {
@@ -41,8 +44,16 @@ public class ListServiceImpl implements IListService {
     }
 
     @Override
-    public Collection<ShopListDto> getAllLists() {
-        return null;
+    public List<ShopListDto> getAllLists() {
+        List<ShopList> shopLists = listRepository.findAll();
+
+        for (ShopList shopList: shopLists
+             ) {
+
+        }
+        return shopLists.stream()
+                .map(ShoplistMapper::toListDto)
+                .collect(Collectors.toList());
     }
 
     @Override

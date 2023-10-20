@@ -3,6 +3,7 @@ package com.nocountryc14.listacheck.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -16,4 +17,8 @@ public class ShopListDto {
     private UserDto shopListUser;
 
     private Collection<ProductDto> products;
+
+    public ShopListDto() {
+        products = new ArrayList<>();
+    }
 }
