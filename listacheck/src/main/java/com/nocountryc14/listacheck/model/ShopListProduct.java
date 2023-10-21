@@ -10,10 +10,12 @@ public class ShopListProduct {
 
     @ManyToOne
     @MapsId("shopListId")
-    @JoinColumn(name = "shoplist_id")
+    @JoinColumn(name = "shopListId")
     private Product product;
-    @MapsId("product_id")
-    @JoinColumn(name = "product_id")
+
+    @ManyToOne
+    @MapsId("productId")
+    @JoinColumn(name = "productId")
     private ShopList shopList;
     private Integer quantity;
 
