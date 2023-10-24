@@ -1,16 +1,16 @@
 package com.nocountryc14.listacheck.service;
-import com.nocountryc14.listacheck.dto.ListDto;
+import com.nocountryc14.listacheck.dto.ShopListDto;
 import java.util.Collection;
 
 public interface IListService {
-    ListDto createList(ListDto listDto);
-    ListDto getListById(Long listId);
+    ShopListDto createList(ShopListDto shopList);
+    ShopListDto getListById(Long listId);
 
-    Collection<ListDto> getAllLists();
+    Collection<ShopListDto> getAllLists();
 
-    ListDto updateList(Long listId,ListDto listDto);
+    ShopListDto updateList(Long listId, ShopListDto shopList);
 
-    ListDto deleteList(Long listId);
+    ShopListDto deleteList(Long listId);
 
 
 

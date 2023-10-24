@@ -1,8 +1,7 @@
 package com.nocountryc14.listacheck.controller;
 
-import com.nocountryc14.listacheck.dto.ListDto;
+import com.nocountryc14.listacheck.dto.ShopListDto;
 import com.nocountryc14.listacheck.service.IListService;
-import com.nocountryc14.listacheck.service.implementation.ListServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Collection;
-import java.util.List;
 
 @Controller
 //@RequestMapping("/list")
@@ -26,18 +24,18 @@ public class ListController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Collection<ListDto>> getAllLists() {
-        Collection<ListDto> lists = listService.getAllLists();
+    public ResponseEntity<Collection<ShopListDto>> getAllLists() {
+        Collection<ShopListDto> lists = listService.getAllLists();
         return new ResponseEntity<>(lists, HttpStatus.OK);
     }
 
     @PostMapping("/list/new")
-    public ResponseEntity<ListDto> createList(@RequestBody ListDto listDto) throws RuntimeException {
-        System.out.println("List name: " + listDto.getListName());
-        if (listDto.getListName() == null) {
+    public ResponseEntity<ShopListDto> createList(@RequestBody ShopListDto shopList) throws RuntimeException {
+        System.out.println("List name: " + shopList.getShopListName());
+        if (shopList.getShopListName() == null) {
             throw new RuntimeException("List must have a name");
         }
-        ListDto createdList = listService.createList(listDto);
+        ShopListDto createdList = listService.createList(shopList);
         return new ResponseEntity<>(createdList, HttpStatus.CREATED);
     }
 /*

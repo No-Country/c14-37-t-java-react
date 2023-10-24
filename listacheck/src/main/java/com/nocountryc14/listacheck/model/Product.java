@@ -2,25 +2,36 @@ package com.nocountryc14.listacheck.model;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Collection;
+@Getter @Setter
 @Entity
-@Data
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
-    private String productName;
-    private Integer stock;
+    private Long id_product;
+    private String name_product;
+    private int stock;
 
-    @OneToOne
+    @ManyToOne()
+    @JoinColumn(name = "category_id")
     private Category category;
-    @OneToOne
-    private Brand brand;
 
-    @ManyToMany(mappedBy = "products")
-    private Collection<List> lists = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+    //categoria
+    //brand
+
+    public Product() {
+    }
+
+    public Product(Long id_product, String name_product, int stock) {
+        this.id_product = id_product;
+        this.name_product = name_product;
+        this.stock = stock;
+    }
 
 }

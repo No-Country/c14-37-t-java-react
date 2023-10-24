@@ -1,14 +1,14 @@
 package com.nocountryc14.listacheck.service.implementation;
 
-import com.nocountryc14.listacheck.dto.ListDto;
-import com.nocountryc14.listacheck.mapper.ListMapper;
+import com.nocountryc14.listacheck.dto.ShopListDto;
+import com.nocountryc14.listacheck.mapper.ShoplistMapper;
 import com.nocountryc14.listacheck.repository.ListRepository;
 import com.nocountryc14.listacheck.service.IListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import com.nocountryc14.listacheck.model.List;
+
 @Service
 public class ListServiceImpl implements IListService {
 
@@ -22,38 +22,36 @@ public class ListServiceImpl implements IListService {
     }
 
     @Override
-    public ListDto createList(ListDto listDto) {
-        Long listId = listDto.getListId();
+    public ShopListDto createList(ShopListDto listDto) {
+        Long shopListId = listDto.getShopListId();
 
-        if(listId != null) {
+        if(shopListId != null) {
             throw new RuntimeException("List already exists");
         }
+        com.nocountryc14.listacheck.model.ShopList shopList = ShoplistMapper.toList(listDto);
 
+        com.nocountryc14.listacheck.model.ShopList shopListCreated = listRepository.save(shopList);
 
-        List list = ListMapper.toList(listDto);
-
-        List listCreated = listRepository.save(list);
-
-        return ListMapper.toListDto(listCreated);
+        return ShoplistMapper.toListDto(shopListCreated);
     }
 
     @Override
-    public ListDto getListById(Long listId) {
+    public ShopListDto getListById(Long listId) {
         return null;
     }
 
     @Override
-    public Collection<ListDto> getAllLists() {
+    public Collection<ShopListDto> getAllLists() {
         return null;
     }
 
     @Override
-    public ListDto updateList(Long listId, ListDto listDto) {
+    public ShopListDto updateList(Long listId, ShopListDto shopList) {
         return null;
     }
 
     @Override
-    public ListDto deleteList(Long listId) {
+    public ShopListDto deleteList(Long listId) {
         return null;
     }
 }
