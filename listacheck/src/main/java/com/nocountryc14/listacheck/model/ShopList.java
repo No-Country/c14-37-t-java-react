@@ -20,12 +20,17 @@ public class ShopList {
     @ManyToOne
     private User  shopListUser;
 
-    @ManyToMany
-    @JoinTable(
-            name = "shoplist_product",
-            joinColumns = @JoinColumn(name = "shoplist_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Collection<Product> products = new ArrayList<>();
+//    @ManyToMany
+//    @JoinTable(
+//            name = "shoplist_product",
+//            joinColumns = @JoinColumn(name = "shoplist_id"),
+//            inverseJoinColumns = @JoinColumn(name = "product_id"))
+//    private Collection<Product> products = new ArrayList<>();
+
+    @OneToMany(mappedBy = "shopList", cascade = CascadeType.ALL)
+    private Collection<ShopListProduct> products = new ArrayList<>();
+
+
 
 
 }
