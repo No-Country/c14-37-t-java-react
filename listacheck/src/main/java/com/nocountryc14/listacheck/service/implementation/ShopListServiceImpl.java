@@ -8,18 +8,17 @@ import com.nocountryc14.listacheck.service.IListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ListServiceImpl implements IListService {
+public class ShopListServiceImpl implements IListService {
 
 
     private final ListRepository listRepository;
 
     @Autowired
-    public ListServiceImpl(ListRepository listRepository) {
+    public ShopListServiceImpl(ListRepository listRepository) {
         this.listRepository = listRepository;
 
     }
@@ -31,9 +30,9 @@ public class ListServiceImpl implements IListService {
         if(shopListId != null) {
             throw new RuntimeException("List already exists");
         }
-        com.nocountryc14.listacheck.model.ShopList shopList = ShoplistMapper.toList(listDto);
+        ShopList shopList = ShoplistMapper.toList(listDto);
 
-        com.nocountryc14.listacheck.model.ShopList shopListCreated = listRepository.save(shopList);
+        ShopList shopListCreated = listRepository.save(shopList);
 
         return ShoplistMapper.toListDto(shopListCreated);
     }

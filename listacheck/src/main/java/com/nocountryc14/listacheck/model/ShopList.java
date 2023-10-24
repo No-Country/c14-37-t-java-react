@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,8 +28,14 @@ public class ShopList {
 //            inverseJoinColumns = @JoinColumn(name = "product_id"))
 //    private Collection<Product> products = new ArrayList<>();
 
-    @OneToMany(mappedBy = "shopList", cascade = CascadeType.ALL)
-    private Collection<ShopListProduct> products = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "ShopList_Product",
+            joinColumns = @JoinColumn(name = "shopList_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<Product> products = new ArrayList<>();
 
 
 

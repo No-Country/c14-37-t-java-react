@@ -1,12 +1,17 @@
 package com.nocountryc14.listacheck.service;
 
+import com.nocountryc14.listacheck.dto.BrandDto;
 import com.nocountryc14.listacheck.model.Brand;
 
 import java.util.List;
 
 public interface IBrandService {
 
-    public List<Brand> createBrand(List<Brand> brands);
+
+
+    // This method is used to create a brand
+
+    public Brand createBrand(BrandDto brandsDto);
 
     public List<Brand> getBrand();
 
