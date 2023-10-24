@@ -5,8 +5,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 @Getter @Setter
 @Entity
+
 public class Product {
 
     @Id
@@ -24,6 +28,9 @@ public class Product {
     private Brand brand;
     //categoria
     //brand
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Collection<ShopListProduct> shopListProducts = new ArrayList<>();
 
     public Product() {
     }
