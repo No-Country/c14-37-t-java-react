@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ListacheckApplication {
 
+
     public static void main(String[] args) {
 
         SpringApplication.run(ListacheckApplication.class, args);
@@ -28,4 +29,7 @@ public class ListacheckApplication {
 //                                .url("http://springdoc.org")));
 //
 //    }
+
+
+
 }
