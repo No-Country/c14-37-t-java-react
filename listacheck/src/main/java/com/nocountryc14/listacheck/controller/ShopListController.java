@@ -41,6 +41,7 @@ public class ShopListController {
         ShopListDto createdList = shopListService.createList(shopList);
         return new ResponseEntity<>(createdList, HttpStatus.CREATED);
     }
+
 /*
     @PostMapping("/list")
     public String saveList(List list) {
