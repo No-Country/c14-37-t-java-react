@@ -6,36 +6,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
-@Controller
-//@RequestMapping("/list")
-public class ListController {
+@RestController
+@RequestMapping("/shoplist")
+public class ShopListController {
 
-    private final IListService listService;
+    private final IListService shopListService;
 
     @Autowired
-    public ListController(IListService listService) {
-        this.listService = listService;
+    public ShopListController(IListService shopListService) {
+
+        this.shopListService = shopListService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("")
     public ResponseEntity<Collection<ShopListDto>> getAllLists() {
-        Collection<ShopListDto> lists = listService.getAllLists();
-        return new ResponseEntity<>(lists, HttpStatus.OK);
+        List<ShopListDto> shopLists = shopListService.getAllLists();
+        if (shopLists == null || shopLists.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(shopLists, HttpStatus.OK);
     }
 
-    @PostMapping("/list/new")
+    @PostMapping("/new")
     public ResponseEntity<ShopListDto> createList(@RequestBody ShopListDto shopList) throws RuntimeException {
-        System.out.println("List name: " + shopList.getShopListName());
+        System.out.println("ShopList name: " + shopList.getShopListName());
         if (shopList.getShopListName() == null) {
             throw new RuntimeException("List must have a name");
         }
-        ShopListDto createdList = listService.createList(shopList);
+        ShopListDto createdList = shopListService.createList(shopList);
         return new ResponseEntity<>(createdList, HttpStatus.CREATED);
     }
 /*
