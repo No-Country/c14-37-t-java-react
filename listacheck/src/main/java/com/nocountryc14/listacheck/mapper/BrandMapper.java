@@ -9,10 +9,15 @@ public class BrandMapper {
         if(brand.getBrandId() != null){
             brandDto.setBrandId(brand.getBrandId());
         }
-
-
         brandDto.setBrandName(brand.getBrandName());
-
         return brandDto;
+    }
+    public static Brand toBrand(BrandDto brandDto){
+        Brand brand = new Brand();
+        if(brandDto.getBrandId() != null){
+            brand.setBrandId(brandDto.getBrandId());
+        }
+        brand.setBrandName(brandDto.getBrandName());
+        return brand;
     }
 }

@@ -1,5 +1,6 @@
 package com.nocountryc14.listacheck.controller;
 
+import com.nocountryc14.listacheck.dto.BrandDto;
 import com.nocountryc14.listacheck.model.Brand;
 import com.nocountryc14.listacheck.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,9 @@ public class BrandController {
 
     // Create
     @PostMapping("/create")
-    public String createBrand(@RequestBody List<Brand> brands) {
-        brandService.createBrand(brands);
-        return "The brands " + brands.toString() + " have been created successfully.";
+    public String createBrand(@RequestBody BrandDto brand) {
+        brandService.createBrand(brand);
+        return "The brands " + brand.toString() + " have been created successfully.";
     }
 
     // Get

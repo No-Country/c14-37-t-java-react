@@ -10,9 +10,11 @@ public class ProductDto {
 
     private String name_product;
 
-    private int stock;
+    private int quantity;
 
     private CategoryDto category;
 
     private BrandDto brand;
+    private boolean buyed;
+
 }

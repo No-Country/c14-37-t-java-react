@@ -1,5 +1,7 @@
 package com.nocountryc14.listacheck.service.implementation;
 
+import com.nocountryc14.listacheck.dto.BrandDto;
+import com.nocountryc14.listacheck.mapper.BrandMapper;
 import com.nocountryc14.listacheck.model.Brand;
 import com.nocountryc14.listacheck.repository.IBrandRepository;
 import com.nocountryc14.listacheck.service.IBrandService;
@@ -17,9 +19,10 @@ public class BrandServiceImpl implements IBrandService {
     // This method is used to create a brand or many as an array.
     // If you want to create just ONE brand, you need to add it inside an array anyway, with one object.
     @Override
-    public List<Brand> createBrand(List<Brand> brands) {
-        brandRepository.saveAll(brands);
-        return brands;
+    public Brand createBrand(BrandDto brandsDto) {
+        Brand brand  = BrandMapper.toBrand(brandsDto);
+        Brand brandSaved = brandRepository.save(brand);
+        return brandSaved;
     }
 
     // This method is used to get a list with all the brands.
