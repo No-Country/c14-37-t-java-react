@@ -9,26 +9,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandServiceImpl implements IBrandService {
 
     @Autowired
     private IBrandRepository brandRepository;
+    private BrandMapper brandMapper;
 
-    // This method is used to create a brand or many as an array.
-    // If you want to create just ONE brand, you need to add it inside an array anyway, with one object.
+    @Autowired
+    public BrandServiceImpl(IBrandRepository brandRepository, BrandMapper brandMapper) {
+        this.brandRepository = brandRepository;
+        this.brandMapper = brandMapper;
+    }
+
+    // This method is used to create a brand.
     @Override
-    public Brand createBrand(BrandDto brandsDto) {
-        Brand brand  = BrandMapper.toBrand(brandsDto);
-        Brand brandSaved = brandRepository.save(brand);
-        return brandSaved;
+    public BrandDto createBrand(BrandDto brandsDto) {
+        Brand brand  = brandMapper.toBrand(brandsDto);
+        Brand savedBrand = brandRepository.save(brand);
+        return brandMapper.toDto(savedBrand);
     }
 
     // This method is used to get a list with all the brands.
     @Override
-    public List<Brand> getBrand() {
-        return brandRepository.findAll();
+    public List<BrandDto> getBrands() {
+        List<Brand> brands = brandRepository.findAll();
+        return brands.stream().map(brandMapper::toDto).collect(Collectors.toList());
     }
 
     // This method is used to delete a brand by ID.
@@ -39,24 +47,29 @@ public class BrandServiceImpl implements IBrandService {
 
     // This method is used to find a brand by ID.
     @Override
-    public Brand findBrandById(Long id_brand) {
-        return brandRepository.findById(id_brand).orElse(null);
+    public BrandDto findBrandById(Long id_brand) {
+        Brand brand = brandRepository.findById(id_brand).orElse(null);
+        return (brand != null) ? brandMapper.toDto(brand) : null;
     }
 
+    // This method is used to find a brand by name.
     @Override
-    public Brand findBrandByName(String name) {
-        return brandRepository.findByBrandName(name);
+    public BrandDto findBrandByName(String brandName) {
+        Brand brand = brandRepository.findByBrandName(brandName);
+        return (brand != null) ? brandMapper.toDto(brand) : null;
     }
 
     // This method is used to update a brand by ID.
     @Override
-    public Brand updateBrand(Long id_brand, Brand updatedBrand) {
+    public BrandDto updateBrand(Long id_brand, BrandDto updatedBrandDto) {
         Brand existingBrand = brandRepository.findById(id_brand).orElse(null);
 
-        // Update the existing brand with the new brand's values.
-        existingBrand.setBrandName(updatedBrand.getBrandName());
-
-        // Save the updated existing brand on the database.
-        return brandRepository.save(existingBrand);
+        if (existingBrand != null) {
+            existingBrand.setBrandName(updatedBrandDto.getBrandName());
+            Brand savedBrand = brandRepository.save(existingBrand);
+            return brandMapper.toDto(savedBrand);
+        } else {
+            return null;
+        }
     }
 }
