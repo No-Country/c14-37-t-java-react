@@ -21,6 +21,10 @@ public class Product {
     private String name_product;
     private int quantity;
     private boolean buyed;
+
+    @OneToOne
+    private Note note;
+
     @ManyToOne()
     @JoinColumn(name = "category_id")
     private Category category;
