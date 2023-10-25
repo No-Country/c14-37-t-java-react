@@ -8,19 +8,16 @@ import java.util.List;
 public interface IBrandService {
 
 
+    BrandDto createBrand(BrandDto brandDto);
 
-    // This method is used to create a brand
+    List<BrandDto> getBrands();
 
-    public Brand createBrand(BrandDto brandsDto);
+    void deleteBrand(Long id_brand);
 
-    public List<Brand> getBrand();
+    BrandDto findBrandById(Long id_brand);
 
-    public void deleteBrand(Long id_brand);
+    BrandDto findBrandByName(String brandName);
 
-    public Brand findBrandById(Long id_brand);
-
-    public Brand findBrandByName(String name);
-
-    public Brand updateBrand(Long id_brand, Brand updatedBrand);
+    BrandDto updateBrand(Long id_brand, BrandDto updatedBrandDto);
 
 }

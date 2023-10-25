@@ -6,22 +6,20 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CategoryMapper {
-    public static CategoryDto categoryDto(Category category){
+    public CategoryDto toDto(Category category){
         CategoryDto categoryDto = new CategoryDto();
         if(category.getCategoryId() != null){
             categoryDto.setCategoryId(category.getCategoryId());
         }
         categoryDto.setCategoryName(category.getCategoryName());
-
         return categoryDto;
     }
-    public static Category category(CategoryDto categoryDto){
+    public Category toCategory(CategoryDto categoryDto){
         Category category = new Category();
         if(categoryDto.getCategoryId() != null){
             category.setCategoryId(categoryDto.getCategoryId());
         }
         category.setCategoryName(categoryDto.getCategoryName());
-
         return category;
     }
 }

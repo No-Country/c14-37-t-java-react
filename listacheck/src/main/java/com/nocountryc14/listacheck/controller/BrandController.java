@@ -17,21 +17,21 @@ public class BrandController {
 
     // Create
     @PostMapping("/create")
-    public String createBrand(@RequestBody BrandDto brand) {
-        brandService.createBrand(brand);
-        return "The brands " + brand.toString() + " have been created successfully.";
+    public String createBrand(@RequestBody BrandDto brandDto) {
+        brandService.createBrand(brandDto);
+        return "The brand " + brandDto.toString() + " has been created successfully.";
     }
 
     // Get
     @GetMapping("/get")
-    public String getBrand() {
+    public String getBrands() {
 
-        List<Brand> brands = brandService.getBrand();
+        List<BrandDto> brandsDto = brandService.getBrands();
 
-        if (brands.isEmpty()) {
+        if (brandsDto.isEmpty()) {
             return "No brand has been added yet.";
         } else {
-            return brands.toString();
+            return brandsDto.toString();
         }
     }
 
@@ -39,35 +39,35 @@ public class BrandController {
     @DeleteMapping("/delete/{id_brand}")
     public String deleteBrand(@PathVariable Long id_brand) {
 
-        Brand brand = brandService.findBrandById(id_brand);
+        BrandDto brandDto = brandService.findBrandById(id_brand);
 
-        if (brand != null) {
+        if (brandDto != null) {
             brandService.deleteBrand(id_brand);
-            return "The brand " + brand.toString() + " has been deleted successfully.";
+            return "The brand " + brandDto.toString() + " has been deleted successfully.";
         } else {
             return "There is no brand with this ID to delete.";
         }
     }
 
-    // Find
+    // Find by ID
     @GetMapping("/{id_brand}")
     public String findBrandById(@PathVariable Long id_brand) {
+        BrandDto brandDto = brandService.findBrandById(id_brand);
 
-        Brand brand = brandService.findBrandById(id_brand);
-
-        if (brand != null) {
-            return brand.toString();
+        if (brandDto != null) {
+            return brandDto.toString();
         } else {
             return "There is no brand with this ID.";
         }
     }
 
+    // Find by name
     @GetMapping("/findByName")
-    public String findBrandByName(@RequestParam String name) {
-        Brand brand = brandService.findBrandByName(name);
+    public String findBrandByName(@RequestParam String brandName) {
+        BrandDto brandDto = brandService.findBrandByName(brandName);
 
-        if (brand != null) {
-            return brand.toString();
+        if (brandDto != null) {
+            return brandDto.toString();
         } else {
             return "There is no brand with this name.";
         }
@@ -75,13 +75,13 @@ public class BrandController {
 
     // Update
     @PutMapping("/update/{id_brand}")
-    public String updateBrand (@PathVariable Long id_brand, @RequestBody Brand updatedBrand) {
+    public String updateBrand (@PathVariable Long id_brand, @RequestBody BrandDto updatedBrandDto) {
 
-        Brand brand = brandService.findBrandById(id_brand);
+        BrandDto brandDto = brandService.findBrandById(id_brand);
 
-        if (brand != null) {
-            brandService.updateBrand(id_brand, updatedBrand);
-            return "The brand " + brand.toString() + " has been updated successfully.";
+        if (brandDto != null) {
+            brandService.updateBrand(id_brand, updatedBrandDto);
+            return "The brand " + brandDto.toString() + " has been updated successfully.";
         } else {
             return "There is no brand with this ID to update.";
         }
