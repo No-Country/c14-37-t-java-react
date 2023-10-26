@@ -19,11 +19,6 @@ public class CategoryServiceImpl implements ICategoryService {
     private ICategoryRepository categoryRepository;
     private CategoryMapper categoryMapper;
 
-    @Autowired
-    public CategoryServiceImpl(ICategoryRepository categoryRepository, CategoryMapper categoryMapper) {
-        this.categoryRepository = categoryRepository;
-        this.categoryMapper = categoryMapper;
-    }
 
     // This method is used to create a category.
     @Override
