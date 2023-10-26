@@ -36,11 +36,12 @@ public class BrandController {
     public ResponseEntity<List<BrandDto>> getBrands() {
         List<BrandDto> brandsDto = brandService.getBrands();
         if (brandsDto.isEmpty()) {
-            return new ResponseEntity<>(brandsDto, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(brandsDto ,HttpStatus.OK);
         }
     }
+
 
     // Delete
     @DeleteMapping("/delete/{id_brand}")
