@@ -18,11 +18,20 @@ public class BrandServiceImpl implements IBrandService {
     private IBrandRepository brandRepository;
     private BrandMapper brandMapper;
 
+<<<<<<< HEAD
+/*
+    @Autowired
+    public BrandServiceImpl(IBrandRepository brandRepository, BrandMapper brandMapper) {
+        this.brandRepository = brandRepository;
+        this.brandMapper = brandMapper;
+    }*/
+=======
+>>>>>>> b4e6512ec168321bffe63f3c0aedd3642949d147
 
     // This method is used to create a brand.
     @Override
     public BrandDto createBrand(BrandDto brandsDto) {
-        Brand brand  = brandMapper.toBrand(brandsDto);
+        Brand brand = brandMapper.toBrand(brandsDto);
         Brand savedBrand = brandRepository.save(brand);
         return brandMapper.toDto(savedBrand);
     }

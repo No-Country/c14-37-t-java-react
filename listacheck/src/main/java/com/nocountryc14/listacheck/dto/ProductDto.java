@@ -15,6 +15,7 @@ public class ProductDto {
     private CategoryDto category;
 
     private BrandDto brand;
+
     private boolean buyed;
 
 }

@@ -1,5 +1,6 @@
 package com.nocountryc14.listacheck.service;
 
+import com.nocountryc14.listacheck.dto.ProductDto;
 import com.nocountryc14.listacheck.model.Product;
 
 import java.util.List;
@@ -7,20 +8,23 @@ import java.util.List;
 public interface IProductService {
 
     //metodo para crear producto
-    public void saveProduct(Product prod);
+    ProductDto createProduct(ProductDto productDto);
+
 
     //metodo para traer productos - lectura
-    public List<Product> getProduct();
+    List<ProductDto> getProducts();
+
 
     //metodo para borrar producto
-    public void deleteProduct(Long id_product);
+    void deleteProduct(Long id_product);
 
-    //metodo para BUSCAR producto
-    public Product findProduct(Long id_product);
+
+    //metodo para BUSCAR producto x id
+    ProductDto findProductById(Long id_product);
 
 
     //metodo para editar producto
-
+    ProductDto updateProduct(Long id_product, ProductDto updatedProductDto);
 
 
 }

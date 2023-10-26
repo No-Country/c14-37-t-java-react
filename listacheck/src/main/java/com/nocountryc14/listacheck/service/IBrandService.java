@@ -1,7 +1,7 @@
 package com.nocountryc14.listacheck.service;
 
 import com.nocountryc14.listacheck.dto.BrandDto;
-import com.nocountryc14.listacheck.model.Brand;
+
 
 import java.util.List;
 
