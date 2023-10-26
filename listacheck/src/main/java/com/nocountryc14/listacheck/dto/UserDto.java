@@ -17,5 +17,5 @@ public class UserDto {
 
     private String email;
 
-    private Collection<ShopList> shoplists;
+    private Collection<ShopList> shopLists;
 }
