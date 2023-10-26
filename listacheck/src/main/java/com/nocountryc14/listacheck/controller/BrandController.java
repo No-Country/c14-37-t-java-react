@@ -1,9 +1,10 @@
 package com.nocountryc14.listacheck.controller;
 
 import com.nocountryc14.listacheck.dto.BrandDto;
-import com.nocountryc14.listacheck.model.Brand;
 import com.nocountryc14.listacheck.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,73 +18,67 @@ public class BrandController {
 
     // Create
     @PostMapping("/create")
-    public String createBrand(@RequestBody BrandDto brandDto) {
+    public ResponseEntity<BrandDto> createBrand(@RequestBody BrandDto brandDto) throws RuntimeException{
+        if (brandDto.getBrandName() == null) {
+            throw new RuntimeException("Brand must have a name");
+        }
         brandService.createBrand(brandDto);
-        return "The brand " + brandDto.toString() + " has been created successfully.";
+        return new ResponseEntity<>(brandDto, HttpStatus.CREATED);
     }
 
     // Get
     @GetMapping("/get")
-    public String getBrands() {
-
+    public ResponseEntity<List<BrandDto>> getBrands() {
         List<BrandDto> brandsDto = brandService.getBrands();
-
         if (brandsDto.isEmpty()) {
-            return "No brand has been added yet.";
+            return new ResponseEntity<>(brandsDto, HttpStatus.NO_CONTENT);
         } else {
-            return brandsDto.toString();
+            return new ResponseEntity<>(HttpStatus.OK);
         }
     }
 
     // Delete
     @DeleteMapping("/delete/{id_brand}")
-    public String deleteBrand(@PathVariable Long id_brand) {
-
+    public ResponseEntity<BrandDto> deleteBrand(@PathVariable Long id_brand) {
         BrandDto brandDto = brandService.findBrandById(id_brand);
-
         if (brandDto != null) {
             brandService.deleteBrand(id_brand);
-            return "The brand " + brandDto.toString() + " has been deleted successfully.";
+            return new ResponseEntity<>(brandDto, HttpStatus.OK);
         } else {
-            return "There is no brand with this ID to delete.";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     // Find by ID
     @GetMapping("/{id_brand}")
-    public String findBrandById(@PathVariable Long id_brand) {
+    public ResponseEntity<BrandDto> findBrandById(@PathVariable Long id_brand) {
         BrandDto brandDto = brandService.findBrandById(id_brand);
-
         if (brandDto != null) {
-            return brandDto.toString();
+            return new ResponseEntity<>(brandDto, HttpStatus.OK);
         } else {
-            return "There is no brand with this ID.";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     // Find by name
     @GetMapping("/findByName")
-    public String findBrandByName(@RequestParam String brandName) {
+    public ResponseEntity<BrandDto> findBrandByName(@RequestParam String brandName) {
         BrandDto brandDto = brandService.findBrandByName(brandName);
-
         if (brandDto != null) {
-            return brandDto.toString();
+            return new ResponseEntity<>(brandDto, HttpStatus.OK);
         } else {
-            return "There is no brand with this name.";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     // Update
     @PutMapping("/update/{id_brand}")
-    public String updateBrand (@PathVariable Long id_brand, @RequestBody BrandDto updatedBrandDto) {
-
-        BrandDto brandDto = brandService.findBrandById(id_brand);
-
+    public ResponseEntity<BrandDto> updateBrand (@PathVariable Long id_brand, @RequestBody BrandDto updatedBrandDto) {
+        BrandDto brandDto = brandService.updateBrand(id_brand, updatedBrandDto);
         if (brandDto != null) {
-            brandService.updateBrand(id_brand, updatedBrandDto);
-            return "The brand " + brandDto.toString() + " has been updated successfully.";
+            return new ResponseEntity<>(brandDto, HttpStatus.OK);
         } else {
-            return "There is no brand with this ID to update.";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

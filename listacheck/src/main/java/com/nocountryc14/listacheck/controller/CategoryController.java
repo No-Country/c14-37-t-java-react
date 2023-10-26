@@ -1,11 +1,10 @@
 package com.nocountryc14.listacheck.controller;
 
-
-import com.nocountryc14.listacheck.dto.BrandDto;
 import com.nocountryc14.listacheck.dto.CategoryDto;
-import com.nocountryc14.listacheck.model.Category;
 import com.nocountryc14.listacheck.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,74 +18,67 @@ public class CategoryController {
 
     // Create
     @PostMapping("/create")
-    public String createCategory(@RequestBody CategoryDto categoryDto) {
+    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) throws RuntimeException{
+        if (categoryDto.getCategoryName() == null) {
+            throw new RuntimeException("Category must have a name");
+        }
         categoryService.createCategory(categoryDto);
-        return "The category " + categoryDto.toString() + " has been created successfully.";
+        return new ResponseEntity<>(categoryDto, HttpStatus.CREATED);
     }
-
 
     // Get
     @GetMapping("/get")
-    public String getCategories() {
-
-        List<CategoryDto> categories = categoryService.getCategories();
-
-        if (categories.isEmpty()) {
-            return "No category has been added yet.";
+    public ResponseEntity<List<CategoryDto>> getCategories() {
+        List<CategoryDto> categoriesDto = categoryService.getCategories();
+        if (categoriesDto.isEmpty()) {
+            return new ResponseEntity<>(categoriesDto, HttpStatus.NO_CONTENT);
         } else {
-            return categories.toString();
+            return new ResponseEntity<>(HttpStatus.OK);
         }
     }
 
     // Delete
     @DeleteMapping("/delete/{id_category}")
-    public String deleteCategory(@PathVariable Long id_category) {
-
+    public ResponseEntity<CategoryDto> deleteCategory(@PathVariable Long id_category) {
         CategoryDto categoryDto = categoryService.findCategoryById(id_category);
-
         if (categoryDto != null) {
             categoryService.deleteCategory(id_category);
-            return "The category " + categoryDto.toString() + " has been deleted successfully.";
+            return new ResponseEntity<>(categoryDto, HttpStatus.OK);
         } else {
-            return "There is no category with this ID to delete.";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     // Find by ID
     @GetMapping("/{id_category}")
-    public String findCategoryById(@PathVariable Long id_category) {
+    public ResponseEntity<CategoryDto> findCategoryById(@PathVariable Long id_category) {
         CategoryDto categoryDto = categoryService.findCategoryById(id_category);
-
         if (categoryDto != null) {
-            return categoryDto.toString();
+            return new ResponseEntity<>(categoryDto, HttpStatus.OK);
         } else {
-            return "There is no category with this ID.";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     // Find by name
     @GetMapping("/findByName")
-    public String findCategoryByName(@RequestParam String categoryName) {
+    public ResponseEntity<CategoryDto> findCategoryByName(@RequestParam String categoryName) {
         CategoryDto categoryDto = categoryService.findCategoryByName(categoryName);
-
         if (categoryDto != null) {
-            return categoryDto.toString();
+            return new ResponseEntity<>(categoryDto, HttpStatus.OK);
         } else {
-            return "There is no category with this name.";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     // Update
     @PutMapping("/update/{id_category}")
-    public String updateCategory (@PathVariable Long id_category, @RequestBody CategoryDto updatedCategoryDto) {
-
-        CategoryDto categoryDto = categoryService.findCategoryById(id_category);
-
+    public ResponseEntity<CategoryDto> updateCategory (@PathVariable Long id_category, @RequestBody CategoryDto updatedCategoryDto) {
+        CategoryDto categoryDto = categoryService.updateCategory(id_category, updatedCategoryDto);
         if (categoryDto != null) {
-            categoryService.updateCategory(id_category, updatedCategoryDto);
-            return "The category " + categoryDto.toString() + " has been updated successfully.";
+            return new ResponseEntity<>(categoryDto, HttpStatus.OK);
         } else {
-            return "There is no category with this ID to update.";
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

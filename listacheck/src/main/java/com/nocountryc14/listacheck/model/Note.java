@@ -10,13 +10,4 @@ public class Note {
     @GeneratedValue
     private Long noteId;
     private String noteField;
-
-
-    public void setNoteId(Long noteId) {
-        this.noteId = noteId;
-    }
-
-    public Long getNoteId() {
-        return noteId;
-    }
 }

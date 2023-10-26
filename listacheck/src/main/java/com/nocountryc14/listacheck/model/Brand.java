@@ -22,15 +22,11 @@ public class Brand {
 
     private String brandName;
 
+    @OneToMany(mappedBy = "brand")
+    private Collection<Product> products;
+
     public Brand(String name) {
         this.brandName = name;
     }
 
-    @OneToMany(mappedBy = "brand")
-    private Collection<Product> products;
-
-    @Override
-    public String toString() {
-        return  "brand ID: " + brandId + ". Name: " + brandName;
-    }
 }
