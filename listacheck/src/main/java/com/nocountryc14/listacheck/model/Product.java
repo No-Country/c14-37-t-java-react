@@ -16,11 +16,11 @@ import java.util.List;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_product;
     private String name_product;
     private int quantity;
-    private boolean buyed;
+    //private boolean bought;
 
     @OneToOne
     private Note note;

@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
 @Autowired
 private IUserService userService;
 
 //CREAR
-    @PostMapping("/users/create")
+    @PostMapping("/create")
     public String createUser(@RequestBody UserDto userDto){
       userService.createUser(userDto);
         //devuelvo String q se creo correctamente
@@ -23,23 +24,22 @@ private IUserService userService;
     }
 
 //consulta-read
-@GetMapping("/users/get")
+@GetMapping("/get")
 public List<UserDto> getUser(){
    return userService.getUser();
 }
 
 //DELETE/BAJA
 
-@DeleteMapping("users/delete/{id}")
+@DeleteMapping("/delete/{id}")
 public String deleteUser(@PathVariable Long id_user){
     userService.deleteUser(id_user);
     //devuelvo String q se creo correctamente
     return "El usuario fue borrado correctamente";
 }
 //BUSQUEDA por id
+    @GetMapping("/find/{id}")
     public void findUser(Long id_user){
         userService.findUserById(id_user);
-       }
-
-
+    }
 }

@@ -6,14 +6,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProductMapper {
-    public ProductDto toProductDto(Product product){
+    public static ProductDto toProductDto(Product product){
         ProductDto productDto = new ProductDto();
         if(product.getId_product() != null){
             productDto.setId_product(product.getId_product());
         }
         productDto.setName_product(product.getName_product());
         productDto.setQuantity(product.getQuantity());
-        productDto.setBuyed(product.isBuyed());
+
 
         //productDto.setCategory(CategoryMapper.categoryDto(product.getCategory()));
 
@@ -27,7 +27,6 @@ public class ProductMapper {
         }
         product.setName_product(productDto.getName_product());
         product.setQuantity(productDto.getQuantity());
-        product.setBuyed(productDto.isBuyed());
 
         //product.setCategory(CategoryMapper.category(productDto.getCategory()));
         return product;

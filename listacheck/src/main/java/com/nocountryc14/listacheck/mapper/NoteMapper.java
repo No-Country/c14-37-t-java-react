@@ -2,6 +2,9 @@ package com.nocountryc14.listacheck.mapper;
 
 import com.nocountryc14.listacheck.dto.NoteDto;
 import com.nocountryc14.listacheck.model.Note;
+import org.springframework.stereotype.Component;
+
+@Component
 
 public class NoteMapper {
 
@@ -18,6 +21,7 @@ public class NoteMapper {
         if(noteDto.getNoteId() != null){
             note.setNoteId(noteDto.getNoteId());
         }
+        System.out.println(noteDto.getNoteField());
         note.setNoteField(noteDto.getNoteField());
         return note;
     }

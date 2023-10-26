@@ -19,15 +19,15 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     private IProductRepository prodRepository;
 
-    private ProductMapper productMapper;
+
 
 
     // This method is used to create a product.
     @Override
     public ProductDto createProduct(ProductDto productDto) {
-        Product product = productMapper.toProduct(productDto);
+        Product product = ProductMapper.toProduct(productDto);
         Product saveProduct = prodRepository.save(product);
-        return productMapper.toProductDto(saveProduct);
+        return ProductMapper.toProductDto(saveProduct);
     }
 
     // This method is used to get a list with all the products.
@@ -35,7 +35,7 @@ public class ProductServiceImpl implements IProductService {
     public List<ProductDto> getProducts() {
         List<Product> products = prodRepository.findAll();
 
-        return products.stream().map(productMapper::toProductDto).collect(Collectors.toList());
+        return products.stream().map(ProductMapper::toProductDto).collect(Collectors.toList());
     }
 
     // This method is used to delete a product by ID.
@@ -49,7 +49,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ProductDto findProductById(Long id_product) {
         Product product = prodRepository.findById(id_product).orElse(null);
-        return (product != null) ? productMapper.toProductDto(product) : null;
+        return (product != null) ? ProductMapper.toProductDto(product) : null;
     }
 
     // This method is used to update a product by ID.
@@ -60,7 +60,7 @@ public class ProductServiceImpl implements IProductService {
         if (existingProduct != null) {
             existingProduct.setName_product(updatedProductDto.getName_product());
             Product savedProduct = prodRepository.save(existingProduct);
-            return productMapper.toProductDto(savedProduct);
+            return ProductMapper.toProductDto(savedProduct);
         }else {
             return null;
         }

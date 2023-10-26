@@ -23,7 +23,7 @@ public class ShopListController {
         this.shopListService = shopListService;
     }
 
-    @GetMapping("")
+    @GetMapping( " ")
     public ResponseEntity<Collection<ShopListDto>> getAllShopLists() {
         List<ShopListDto> shopLists = shopListService.getAllLists();
         if (shopLists == null || shopLists.isEmpty()) {
@@ -32,7 +32,7 @@ public class ShopListController {
         return new ResponseEntity<>(shopLists, HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public ResponseEntity<ShopListDto> createShopList(@RequestBody ShopListDto shopList) throws RuntimeException {
         System.out.println("ShopList name: " + shopList.getShopListName());
         if (shopList.getShopListName() == null) {
@@ -54,7 +54,7 @@ public class ShopListController {
         return new ResponseEntity<>(shopList, HttpStatus.OK);
     }
 
-    @DeleteMapping("/list/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<ShopListDto> delete(@PathVariable Long id) {
         if(id == null){
             throw new RuntimeException("List does not exist");

@@ -1,6 +1,7 @@
 package com.nocountryc14.listacheck.mapper;
 
 import com.nocountryc14.listacheck.dto.ShopListDto;
+import com.nocountryc14.listacheck.model.ShopList;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,10 +23,13 @@ public class ShoplistMapper {
         return listDto;
     }
     public static com.nocountryc14.listacheck.model.ShopList toList(ShopListDto listDto){
-        com.nocountryc14.listacheck.model.ShopList shopList = new com.nocountryc14.listacheck.model.ShopList();
+
+        ShopList shopList = new com.nocountryc14.listacheck.model.ShopList();
+        System.out.println("Shop list in mapper: "+ listDto);
         if(listDto.getShopListId() != null){
             shopList.setShopListId(listDto.getShopListId());
         }
+        shopList.setShopListName(listDto.getShopListName());
         if(listDto.getShopListUpdateDate() != null){
             shopList.setShopListUpdateDate(listDto.getShopListUpdateDate());
         }

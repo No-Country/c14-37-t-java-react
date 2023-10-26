@@ -13,8 +13,11 @@ import java.util.List;
 @RequestMapping("/brand")
 public class BrandController {
 
-    @Autowired
     private IBrandService brandService;
+    @Autowired
+    public BrandController(IBrandService brandService) {
+        this.brandService = brandService;
+    }
 
     // Create
     @PostMapping("/create")
@@ -22,8 +25,10 @@ public class BrandController {
         if (brandDto.getBrandName() == null) {
             throw new RuntimeException("Brand must have a name");
         }
-        brandService.createBrand(brandDto);
-        return new ResponseEntity<>(brandDto, HttpStatus.CREATED);
+        //BrandDto brandDtoSaved = brandService.createBrand(brandDto);
+
+
+        return new ResponseEntity<>(brandService.createBrand(brandDto), HttpStatus.CREATED);
     }
 
     // Get

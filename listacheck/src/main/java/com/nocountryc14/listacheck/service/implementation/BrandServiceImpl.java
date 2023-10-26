@@ -14,32 +14,32 @@ import java.util.stream.Collectors;
 @Service
 public class BrandServiceImpl implements IBrandService {
 
-    @Autowired
+
     private IBrandRepository brandRepository;
-    private BrandMapper brandMapper;
 
 
-/*
+
+
     @Autowired
-    public BrandServiceImpl(IBrandRepository brandRepository, BrandMapper brandMapper) {
+    public BrandServiceImpl(IBrandRepository brandRepository) {
         this.brandRepository = brandRepository;
-        this.brandMapper = brandMapper;
-    }*/
+
+    }
 
 
     // This method is used to create a brand.
     @Override
     public BrandDto createBrand(BrandDto brandsDto) {
-        Brand brand = brandMapper.toBrand(brandsDto);
+        Brand brand = BrandMapper.toBrand(brandsDto);
         Brand savedBrand = brandRepository.save(brand);
-        return brandMapper.toDto(savedBrand);
+        return BrandMapper.toDto(savedBrand);
     }
 
     // This method is used to get a list with all the brands.
     @Override
     public List<BrandDto> getBrands() {
         List<Brand> brands = brandRepository.findAll();
-        return brands.stream().map(brandMapper::toDto).collect(Collectors.toList());
+        return brands.stream().map(BrandMapper::toDto).collect(Collectors.toList());
     }
 
     // This method is used to delete a brand by ID.
@@ -52,14 +52,14 @@ public class BrandServiceImpl implements IBrandService {
     @Override
     public BrandDto findBrandById(Long id_brand) {
         Brand brand = brandRepository.findById(id_brand).orElse(null);
-        return (brand != null) ? brandMapper.toDto(brand) : null;
+        return (brand != null) ? BrandMapper.toDto(brand) : null;
     }
 
     // This method is used to find a brand by name.
     @Override
     public BrandDto findBrandByName(String brandName) {
         Brand brand = brandRepository.findByBrandName(brandName);
-        return (brand != null) ? brandMapper.toDto(brand) : null;
+        return (brand != null) ? BrandMapper.toDto(brand) : null;
     }
 
     // This method is used to update a brand by ID.
@@ -70,7 +70,7 @@ public class BrandServiceImpl implements IBrandService {
         if (existingBrand != null) {
             existingBrand.setBrandName(updatedBrandDto.getBrandName());
             Brand savedBrand = brandRepository.save(existingBrand);
-            return brandMapper.toDto(savedBrand);
+            return BrandMapper.toDto(savedBrand);
         } else {
             return null;
         }

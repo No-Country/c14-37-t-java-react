@@ -7,7 +7,8 @@ import lombok.Data;
 @Data
 public class Note {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long noteId;
     private String noteField;
+
 }

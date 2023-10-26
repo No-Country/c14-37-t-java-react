@@ -14,7 +14,7 @@ import java.util.Collection;
 //Atributos
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
     @Column(name ="firstName")

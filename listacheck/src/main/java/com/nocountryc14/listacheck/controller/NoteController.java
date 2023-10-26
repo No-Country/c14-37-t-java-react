@@ -22,8 +22,8 @@ public class NoteController {
         if (noteDto.getNoteField() == null) {
             throw new RuntimeException("Note must have a field");
         }
-        noteService.createNote(noteDto);
-        return new ResponseEntity<>(noteDto, HttpStatus.CREATED);
+        //noteService.createNote(noteDto);
+        return new ResponseEntity<>(noteService.createNote(noteDto), HttpStatus.CREATED);
     }
 
     // Get

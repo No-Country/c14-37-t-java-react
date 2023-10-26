@@ -32,7 +32,7 @@ public class ShopListServiceImpl implements IListService {
             throw new RuntimeException("List already exists");
         }
         ShopList shopList = ShoplistMapper.toList(listDto);
-
+        System.out.println("Shop list in service: "+ shopList);
         ShopList shopListCreated = listRepository.save(shopList);
 
         return ShoplistMapper.toListDto(shopListCreated);

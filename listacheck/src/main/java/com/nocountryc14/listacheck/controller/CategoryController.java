@@ -22,8 +22,8 @@ public class CategoryController {
         if (categoryDto.getCategoryName() == null) {
             throw new RuntimeException("Category must have a name");
         }
-        categoryService.createCategory(categoryDto);
-        return new ResponseEntity<>(categoryDto, HttpStatus.CREATED);
+        //categoryService.createCategory(categoryDto);
+        return new ResponseEntity<>(categoryService.createCategory(categoryDto), HttpStatus.CREATED);
     }
 
     // Get

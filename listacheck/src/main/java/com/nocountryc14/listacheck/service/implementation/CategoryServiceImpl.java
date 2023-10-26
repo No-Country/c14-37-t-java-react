@@ -17,6 +17,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
     private ICategoryRepository categoryRepository;
+    @Autowired
     private CategoryMapper categoryMapper;
 
 

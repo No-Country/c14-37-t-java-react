@@ -14,10 +14,15 @@ import java.util.stream.Collectors;
 @Service
 public class NoteServiceImpl implements INoteService {
 
-    @Autowired
-    private INoteRepository noteRepository;
-    private NoteMapper noteMapper;
 
+    private INoteRepository noteRepository;
+
+    private NoteMapper noteMapper;
+    @Autowired
+    public NoteServiceImpl(INoteRepository noteRepository, NoteMapper noteMapper) {
+        this.noteRepository = noteRepository;
+        this.noteMapper = noteMapper;
+    }
     // This method is used to create a note.
     @Override
     public NoteDto createNote(NoteDto notesDto) {

@@ -16,6 +16,6 @@ public class ProductDto {
 
     private BrandDto brand;
 
-    private boolean buyed;
+    //private boolean bought;
 
 }

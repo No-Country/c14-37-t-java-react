@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BrandMapper {
-    public BrandDto toDto(Brand brand){
+    public static BrandDto toDto(Brand brand){
         BrandDto brandDto = new BrandDto();
         if(brand.getBrandId() != null){
             brandDto.setBrandId(brand.getBrandId());
@@ -14,7 +14,7 @@ public class BrandMapper {
         brandDto.setBrandName(brand.getBrandName());
         return brandDto;
     }
-    public Brand toBrand(BrandDto brandDto){
+    public static Brand toBrand(BrandDto brandDto){
         Brand brand = new Brand();
         if(brandDto.getBrandId() != null){
             brand.setBrandId(brandDto.getBrandId());
