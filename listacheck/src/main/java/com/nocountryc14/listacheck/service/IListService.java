@@ -9,7 +9,7 @@ public interface IListService {
 
     List<ShopListDto> getAllLists();
 
-    ShopListDto updateList(Long listId, ShopListDto shopList);
+    ShopListDto updateList(Long listId, ShopListDto shopListDto);
 
     ShopListDto deleteList(Long listId);
 

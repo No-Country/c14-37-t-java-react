@@ -11,6 +11,9 @@ public class ShoplistMapper {
             listDto.setShopListId(shopList.getShopListId());
         }
         listDto.setShopListName(shopList.getShopListName());
+        if(shopList.getShopListUpdateDate() != null){
+            listDto.setShopListUpdateDate(shopList.getShopListUpdateDate());
+        }
         if(shopList.getShopListUser() != null){
 
             listDto.setShopListUser(UserMapper.toUserDto(shopList.getShopListUser()));
@@ -23,7 +26,10 @@ public class ShoplistMapper {
         if(listDto.getShopListId() != null){
             shopList.setShopListId(listDto.getShopListId());
         }
-        shopList.setShopListName(listDto.getShopListName());
+        if(listDto.getShopListUpdateDate() != null){
+            shopList.setShopListUpdateDate(listDto.getShopListUpdateDate());
+        }
+        shopList.setShopListUpdateDate(listDto.getShopListUpdateDate());
         if(listDto.getShopListUser() != null){
             shopList.setShopListUser(UserMapper.toUser(listDto.getShopListUser()));
         }

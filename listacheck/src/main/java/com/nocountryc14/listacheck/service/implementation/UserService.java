@@ -31,8 +31,10 @@ public class UserService implements IUserService {
     @Override
     public List<UserDto> getUser() {
        List<User> users = userRepository.findAll();
-       return users.stream().map(userMapper::toUserDto).collect(Collectors.toList());
+       return users.stream().map(UserMapper::toUserDto).collect(Collectors.toList());
     }
+
+
 
     // This method is used to delete a user by ID.
     @Override

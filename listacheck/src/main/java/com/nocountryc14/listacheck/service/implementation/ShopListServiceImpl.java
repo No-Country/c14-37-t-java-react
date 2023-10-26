@@ -2,6 +2,7 @@ package com.nocountryc14.listacheck.service.implementation;
 
 import com.nocountryc14.listacheck.dto.ShopListDto;
 import com.nocountryc14.listacheck.mapper.ShoplistMapper;
+import com.nocountryc14.listacheck.mapper.UserMapper;
 import com.nocountryc14.listacheck.model.ShopList;
 import com.nocountryc14.listacheck.repository.ListRepository;
 import com.nocountryc14.listacheck.service.IListService;
@@ -39,7 +40,8 @@ public class ShopListServiceImpl implements IListService {
 
     @Override
     public ShopListDto getListById(Long listId) {
-        return null;
+        ShopList shopList = listRepository.findById(listId).orElse(null);
+        return shopList != null ? ShoplistMapper.toListDto(shopList) : null;
     }
 
     @Override
@@ -56,12 +58,29 @@ public class ShopListServiceImpl implements IListService {
     }
 
     @Override
-    public ShopListDto updateList(Long listId, ShopListDto shopList) {
-        return null;
+    public ShopListDto updateList(Long listId, ShopListDto shopListDto) {
+        ShopList shopList = listRepository.findById(listId).orElse(null);
+        if(shopList.getShopListId() == null){
+            shopList = listRepository.save(ShoplistMapper.toList(shopListDto));
+        }else{
+            if(shopListDto.getShopListName() != null){
+                shopList.setShopListName(shopListDto.getShopListName());
+            }
+            if(shopListDto.getShopListUpdateDate() != null){
+                shopList.setShopListUpdateDate(shopListDto.getShopListUpdateDate());
+            }
+            if(shopListDto.getShopListUser() != null){
+                shopList.setShopListUser(UserMapper.toUser(shopListDto.getShopListUser()));
+            }
+            shopList = listRepository.save(shopList);
+        }
+        return ShoplistMapper.toListDto(shopList);
     }
 
     @Override
     public ShopListDto deleteList(Long listId) {
-        return null;
+        ShopList shopList = listRepository.findById(listId).orElse(null);
+        listRepository.deleteById(listId);
+        return shopList != null ? ShoplistMapper.toListDto(shopList) : null;
     }
 }
