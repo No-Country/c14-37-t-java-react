@@ -33,7 +33,7 @@ public class NoteController {
         if (notesDto.isEmpty()) {
             return new ResponseEntity<>(notesDto, HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(notesDto,HttpStatus.OK);
         }
     }
 
