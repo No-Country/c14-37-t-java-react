@@ -26,7 +26,8 @@ private IUserService userService;
 //consulta-read
 @GetMapping("/get")
 public List<UserDto> getUser(){
-   return userService.getUser();
+        List<UserDto> userDto = userService.getUser();
+   return userDto;
 }
 
 //DELETE/BAJA
