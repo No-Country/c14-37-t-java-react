@@ -26,6 +26,7 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ProductDto createProduct(ProductDto productDto) {
         Product product = ProductMapper.toProduct(productDto);
+        System.out.println("product in create product service: "+product);
         Product saveProduct = prodRepository.save(product);
         return ProductMapper.toProductDto(saveProduct);
     }

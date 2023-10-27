@@ -14,9 +14,11 @@ public class ProductMapper {
         productDto.setName_product(product.getName_product());
         productDto.setQuantity(product.getQuantity());
 
-
+        productDto.setBought(product.isBought());
         //productDto.setCategory(CategoryMapper.categoryDto(product.getCategory()));
-
+        productDto.setBrand(BrandMapper.toDto(product.getBrand()));
+        productDto.setCategory(CategoryMapper.toDto(product.getCategory()));
+        productDto.setNote(NoteMapper.toDto(product.getNote()));
         return productDto;
     }
 
@@ -27,8 +29,10 @@ public class ProductMapper {
         }
         product.setName_product(productDto.getName_product());
         product.setQuantity(productDto.getQuantity());
-
-        //product.setCategory(CategoryMapper.category(productDto.getCategory()));
+        product.setBought(productDto.isBought());
+        product.setBrand(BrandMapper.toBrand(productDto.getBrand()));
+        product.setCategory(CategoryMapper.toCategory(productDto.getCategory()));
+        product.setNote(NoteMapper.toNote(productDto.getNote()));
         return product;
     }
 }

@@ -14,19 +14,18 @@ public class ShopList {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long shopListId;
 
     private String shopListName;
-    private LocalDateTime shopListUpdateDate;
+    //private LocalDateTime shopListUpdateDate;
+    /*
     @ManyToOne
     private User  shopListUser;
-    @ManyToMany
-    @JoinTable(
-            name = "ShopList_Product",
-            joinColumns = @JoinColumn(name = "shopList_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
+    */
+
+    //Unidirectional
+    @OneToMany
     private List<Product> products = new ArrayList<>();
 
 }

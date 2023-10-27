@@ -6,6 +6,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
@@ -15,10 +16,10 @@ public class ShopListDto {
 
     private String shopListName;
 
-    private UserDto shopListUser;
+    //private UserDto shopListUser;
 
-    private Collection<ProductDto> products;
-    private LocalDateTime shopListUpdateDate;
+    private List<ProductDto> products;
+
     public ShopListDto() {
         products = new ArrayList<>();
     }

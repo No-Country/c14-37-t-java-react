@@ -11,11 +11,11 @@ public class ProductDto {
     private String name_product;
 
     private int quantity;
-
+    private NoteDto note;
     private CategoryDto category;
 
     private BrandDto brand;
 
-    //private boolean bought;
+    private boolean bought;
 
 }

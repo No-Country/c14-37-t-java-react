@@ -35,7 +35,7 @@ public class NoteServiceImpl implements INoteService {
     @Override
     public List<NoteDto> getNotes() {
         List<Note> notes = noteRepository.findAll();
-        return notes.stream().map(noteMapper::toDto).collect(Collectors.toList());
+        return notes.stream().map(NoteMapper::toDto).collect(Collectors.toList());
     }
 
     // This method is used to delete a note by ID.

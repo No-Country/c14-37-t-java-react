@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public List<CategoryDto> getCategories() {
         List<Category> categories = categoryRepository.findAll();
-        return categories.stream().map(categoryMapper::toDto).collect(Collectors.toList());
+        return categories.stream().map(CategoryMapper::toDto).collect(Collectors.toList());
     }
 
     // This method is used to delete a category by ID.

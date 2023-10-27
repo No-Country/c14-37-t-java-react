@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 public class NoteMapper {
 
-    public NoteDto toDto(Note note){
+    public static NoteDto toDto(Note note){
         NoteDto noteDto = new NoteDto();
         if(note.getNoteId() != null){
             noteDto.setNoteId(note.getNoteId());
@@ -16,7 +16,7 @@ public class NoteMapper {
         noteDto.setNoteField(note.getNoteField());
         return noteDto;
     }
-    public Note toNote(NoteDto noteDto){
+    public static Note toNote(NoteDto noteDto){
         Note note = new Note();
         if(noteDto.getNoteId() != null){
             note.setNoteId(noteDto.getNoteId());

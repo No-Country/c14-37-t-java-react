@@ -20,24 +20,24 @@ public class Product {
     private Long id_product;
     private String name_product;
     private int quantity;
-    //private boolean bought;
+
+    private boolean bought;
 
     @OneToOne
     private Note note;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
+
+
     //categoria
     //brand
-
-    @ManyToMany(mappedBy = "products")
-    private List<ShopList> shopLists = new ArrayList<>();
-
     public Product() {
     }
 

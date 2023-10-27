@@ -11,17 +11,10 @@ import java.util.List;
 @Entity
 @Data
 public class Category {
-
-
     //Attributes
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long categoryId;
-    String categoryName;
-
-    @OneToMany(mappedBy = "category")
-    private List<Product> products = new ArrayList<>();
-
-
+    private Long categoryId;
+    private String categoryName;
 
 }

@@ -10,7 +10,6 @@ import java.util.Collection;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Brand {
 
     @Id
@@ -19,11 +18,8 @@ public class Brand {
 
     private String brandName;
 
-    @OneToMany(mappedBy = "brand")
-    private Collection<Product> products;
 
-    public Brand(String name) {
-        this.brandName = name;
-    }
+
+
 
 }
