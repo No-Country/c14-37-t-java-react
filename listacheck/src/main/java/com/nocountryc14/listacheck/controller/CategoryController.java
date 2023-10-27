@@ -31,9 +31,9 @@ public class CategoryController {
     public ResponseEntity<List<CategoryDto>> getCategories() {
         List<CategoryDto> categoriesDto = categoryService.getCategories();
         if (categoriesDto.isEmpty()) {
-            return new ResponseEntity<>(categoriesDto, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(categoriesDto, HttpStatus.OK);
         }
     }
 
