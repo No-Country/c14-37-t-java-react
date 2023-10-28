@@ -1,6 +1,6 @@
 package com.nocountryc14.listacheck.controller;
 
-import com.nocountryc14.listacheck.dto.NoteDto;
+import com.nocountryc14.listacheck.model.Note;
 import com.nocountryc14.listacheck.service.INoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,18 +18,18 @@ public class NoteController {
 
     // Create
     @PostMapping("/create")
-    public ResponseEntity<NoteDto> createNote(@RequestBody NoteDto noteDto) throws RuntimeException{
-        if (noteDto.getNoteField() == null) {
+    public ResponseEntity<Note> createNote(@RequestBody Note note) throws RuntimeException{
+        if (note.getNoteField() == null) {
             throw new RuntimeException("Note must have a field");
         }
-        //noteService.createNote(noteDto);
-        return new ResponseEntity<>(noteService.createNote(noteDto), HttpStatus.CREATED);
+        //noteService.createNote(note);
+        return new ResponseEntity<>(noteService.createNote(note), HttpStatus.CREATED);
     }
 
     // Get
     @GetMapping("/get")
-    public ResponseEntity<List<NoteDto>> getNotes() {
-        List<NoteDto> notesDto = noteService.getNotes();
+    public ResponseEntity<List<Note>> getNotes() {
+        List<Note> notesDto = noteService.getNotes();
         if (notesDto.isEmpty()) {
             return new ResponseEntity<>(notesDto, HttpStatus.NO_CONTENT);
         } else {
@@ -39,11 +39,11 @@ public class NoteController {
 
     // Delete
     @DeleteMapping("/delete/{id_note}")
-    public ResponseEntity<NoteDto> deleteNote(@PathVariable Long id_note) {
-        NoteDto noteDto = noteService.findNoteById(id_note);
-        if (noteDto != null) {
+    public ResponseEntity<Note> deleteNote(@PathVariable Long id_note) {
+        Note note = noteService.findNoteById(id_note);
+        if (note != null) {
             noteService.deleteNote(id_note);
-            return new ResponseEntity<>(noteDto, HttpStatus.OK);
+            return new ResponseEntity<>(note, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -51,10 +51,10 @@ public class NoteController {
 
     // Find by ID
     @GetMapping("/{id_note}")
-    public ResponseEntity<NoteDto> findNoteById(@PathVariable Long id_note) {
-        NoteDto noteDto = noteService.findNoteById(id_note);
-        if (noteDto != null) {
-            return new ResponseEntity<>(noteDto, HttpStatus.OK);
+    public ResponseEntity<Note> findNoteById(@PathVariable Long id_note) {
+        Note note = noteService.findNoteById(id_note);
+        if (note != null) {
+            return new ResponseEntity<>(note, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -62,10 +62,10 @@ public class NoteController {
 
     // Update
     @PutMapping("/update/{id_note}")
-    public ResponseEntity<NoteDto> updateNote (@PathVariable Long id_note, @RequestBody NoteDto updatedNoteDto) {
-        NoteDto noteDto = noteService.updateNote(id_note, updatedNoteDto);
-        if (noteDto != null) {
-            return new ResponseEntity<>(noteDto, HttpStatus.OK);
+    public ResponseEntity<Note> updateNote (@PathVariable Long id_note, @RequestBody Note updatedNote) {
+        Note note = noteService.updateNote(id_note, updatedNote);
+        if (note != null) {
+            return new ResponseEntity<>(note, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

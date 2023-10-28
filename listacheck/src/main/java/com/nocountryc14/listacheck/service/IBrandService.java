@@ -1,6 +1,6 @@
 package com.nocountryc14.listacheck.service;
 
-import com.nocountryc14.listacheck.dto.BrandDto;
+import com.nocountryc14.listacheck.model.Brand;
 
 
 import java.util.List;
@@ -8,16 +8,16 @@ import java.util.List;
 public interface IBrandService {
 
 
-    BrandDto createBrand(BrandDto brandDto);
+    Brand createBrand(Brand brand);
 
-    List<BrandDto> getBrands();
+    List<Brand> getBrands();
 
     void deleteBrand(Long id_brand);
 
-    BrandDto findBrandById(Long id_brand);
+    Brand findBrandById(Long id_brand);
 
-    BrandDto findBrandByName(String brandName);
+    Brand findBrandByName(String brandName);
 
-    BrandDto updateBrand(Long id_brand, BrandDto updatedBrandDto);
+    Brand updateBrand(Long id_brand, Brand updatedBrand);
 
 }

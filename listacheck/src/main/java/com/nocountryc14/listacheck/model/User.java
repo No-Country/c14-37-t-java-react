@@ -4,17 +4,19 @@ package com.nocountryc14.listacheck.model;
 
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Collection;
 
 @Entity
 @Table(name = "APP_USER")
+@Data
  public class User {
 
 //Atributos
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     @Column(name ="firstName")
@@ -44,23 +46,17 @@ import java.util.Collection;
 
     }
 
-    public User(String firstName, String lastName, String mail, String password) {
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = mail;
+        this.email = email;
         this.password = password;
     }
 
     // Getters and setters
 
 
-    public Long getId() {
-        return userId;
-    }
 
-    public void setId(Long id) {
-        userId = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -101,7 +97,7 @@ import java.util.Collection;
                 "Id=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", mail='" + email + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

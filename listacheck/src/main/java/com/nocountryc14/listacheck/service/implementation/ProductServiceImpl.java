@@ -1,8 +1,5 @@
 package com.nocountryc14.listacheck.service.implementation;
 
-import com.nocountryc14.listacheck.dto.ProductDto;
-
-import com.nocountryc14.listacheck.mapper.ProductMapper;
 
 import com.nocountryc14.listacheck.model.Product;
 import com.nocountryc14.listacheck.repository.IProductRepository;
@@ -24,19 +21,19 @@ public class ProductServiceImpl implements IProductService {
 
     // This method is used to create a product.
     @Override
-    public ProductDto createProduct(ProductDto productDto) {
-        Product product = ProductMapper.toProduct(productDto);
+    public Product createProduct(Product product) {
+
         System.out.println("product in create product service: "+product);
         Product saveProduct = prodRepository.save(product);
-        return ProductMapper.toProductDto(saveProduct);
+        return saveProduct;
     }
 
     // This method is used to get a list with all the products.
     @Override
-    public List<ProductDto> getProducts() {
+    public List<Product> getProducts() {
         List<Product> products = prodRepository.findAll();
 
-        return products.stream().map(ProductMapper::toProductDto).collect(Collectors.toList());
+        return products;
     }
 
     // This method is used to delete a product by ID.
@@ -48,20 +45,20 @@ public class ProductServiceImpl implements IProductService {
 
     // This method is used to find a product by ID.
     @Override
-    public ProductDto findProductById(Long id_product) {
+    public Product findProductById(Long id_product) {
         Product product = prodRepository.findById(id_product).orElse(null);
-        return (product != null) ? ProductMapper.toProductDto(product) : null;
+        return product;
     }
 
     // This method is used to update a product by ID.
     @Override
-    public ProductDto updateProduct(Long id_product, ProductDto updatedProductDto) {
+    public Product updateProduct(Long id_product, Product updatedProduct) {
         Product existingProduct = prodRepository.findById(id_product).orElse(null);
 
         if (existingProduct != null) {
-            existingProduct.setName_product(updatedProductDto.getName_product());
+            existingProduct.setName_product(updatedProduct.getName_product());
             Product savedProduct = prodRepository.save(existingProduct);
-            return ProductMapper.toProductDto(savedProduct);
+            return savedProduct;
         }else {
             return null;
         }

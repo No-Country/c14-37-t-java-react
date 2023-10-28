@@ -1,6 +1,6 @@
 package com.nocountryc14.listacheck.controller;
 
-import com.nocountryc14.listacheck.dto.UserDto;
+
 import com.nocountryc14.listacheck.model.User;
 import com.nocountryc14.listacheck.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +17,17 @@ private IUserService userService;
 
 //CREAR
     @PostMapping("/create")
-    public String createUser(@RequestBody UserDto userDto){
-      userService.createUser(userDto);
+    public String createUser(@RequestBody User user){
+      userService.createUser(user);
         //devuelvo String q se creo correctamente
       return "El usuario fue creado correctamente";
     }
 
 //consulta-read
 @GetMapping("/get")
-public List<UserDto> getUser(){
-        List<UserDto> userDto = userService.getUser();
-   return userDto;
+public List<User> getUser(){
+        List<User> user = userService.getUser();
+   return user;
 }
 
 //DELETE/BAJA

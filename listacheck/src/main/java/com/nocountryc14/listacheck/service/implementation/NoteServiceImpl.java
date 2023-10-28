@@ -1,7 +1,5 @@
 package com.nocountryc14.listacheck.service.implementation;
 
-import com.nocountryc14.listacheck.dto.NoteDto;
-import com.nocountryc14.listacheck.mapper.NoteMapper;
 import com.nocountryc14.listacheck.model.Note;
 import com.nocountryc14.listacheck.repository.INoteRepository;
 import com.nocountryc14.listacheck.service.INoteService;
@@ -17,25 +15,25 @@ public class NoteServiceImpl implements INoteService {
 
     private INoteRepository noteRepository;
 
-    private NoteMapper noteMapper;
+   
     @Autowired
-    public NoteServiceImpl(INoteRepository noteRepository, NoteMapper noteMapper) {
+    public NoteServiceImpl(INoteRepository noteRepository) {
         this.noteRepository = noteRepository;
-        this.noteMapper = noteMapper;
+      
     }
     // This method is used to create a note.
     @Override
-    public NoteDto createNote(NoteDto notesDto) {
-        Note note  = noteMapper.toNote(notesDto);
+    public Note createNote(Note note) {
+
         Note savedNote = noteRepository.save(note);
-        return noteMapper.toDto(savedNote);
+        return savedNote;
     }
 
     // This method is used to get a list with all the notes.
     @Override
-    public List<NoteDto> getNotes() {
+    public List<Note> getNotes() {
         List<Note> notes = noteRepository.findAll();
-        return notes.stream().map(NoteMapper::toDto).collect(Collectors.toList());
+        return notes;
     }
 
     // This method is used to delete a note by ID.
@@ -46,20 +44,20 @@ public class NoteServiceImpl implements INoteService {
 
     // This method is used to find a note by ID.
     @Override
-    public NoteDto findNoteById(Long id_note) {
+    public Note findNoteById(Long id_note) {
         Note note = noteRepository.findById(id_note).orElse(null);
-        return (note != null) ? noteMapper.toDto(note) : null;
+        return note;
     }
 
     // This method is used to update a note by ID.
     @Override
-    public NoteDto updateNote(Long id_note, NoteDto updatedNoteDto) {
+    public Note updateNote(Long id_note, Note updatedNote) {
         Note existingNote = noteRepository.findById(id_note).orElse(null);
 
         if (existingNote != null) {
-            existingNote.setNoteField(updatedNoteDto.getNoteField());
+            existingNote.setNoteField(updatedNote.getNoteField());
             Note savedNote = noteRepository.save(existingNote);
-            return noteMapper.toDto(savedNote);
+            return savedNote;
         } else {
             return null;
         }

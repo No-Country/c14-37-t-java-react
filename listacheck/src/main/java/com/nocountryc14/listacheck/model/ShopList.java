@@ -14,7 +14,7 @@ public class ShopList {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long shopListId;
 
     private String shopListName;

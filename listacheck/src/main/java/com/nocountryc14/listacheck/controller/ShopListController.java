@@ -1,6 +1,6 @@
 package com.nocountryc14.listacheck.controller;
 
-import com.nocountryc14.listacheck.dto.ShopListDto;
+import com.nocountryc14.listacheck.model.ShopList;
 import com.nocountryc14.listacheck.service.IListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,8 +24,8 @@ public class ShopListController {
     }
 
     @GetMapping( " ")
-    public ResponseEntity<Collection<ShopListDto>> getAllShopLists() {
-        List<ShopListDto> shopLists = shopListService.getAllLists();
+    public ResponseEntity<Collection<ShopList>> getAllShopLists() {
+        List<ShopList> shopLists = shopListService.getAllLists();
         if (shopLists == null || shopLists.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -33,33 +33,34 @@ public class ShopListController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ShopListDto> createShopList(@RequestBody ShopListDto shopList) throws RuntimeException {
-        System.out.println("ShopList name: " + shopList.getShopListName());
+    public ResponseEntity<ShopList> createShopList(@RequestBody ShopList shopList) throws RuntimeException {
+
         if (shopList.getShopListName() == null) {
             throw new RuntimeException("List must have a name");
         }
-        ShopListDto createdList = shopListService.createList(shopList);
+        ShopList createdList = shopListService.createList(shopList);
+        System.out.println("ShopList created: " + createdList);
         return new ResponseEntity<>(createdList, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ShopListDto> showList(@PathVariable Long id) {
-        ShopListDto shopList = shopListService.getListById(id);
+    public ResponseEntity<ShopList> showList(@PathVariable Long id) {
+        ShopList shopList = shopListService.getListById(id);
         return new ResponseEntity<>(shopList, HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ShopListDto> edit(@PathVariable Long id, @RequestBody ShopListDto shopListDto) {
-        ShopListDto shopList = shopListService.updateList(id, shopListDto);
-        return new ResponseEntity<>(shopList, HttpStatus.OK);
+    public ResponseEntity<ShopList> edit(@PathVariable Long id, @RequestBody ShopList shopList) {
+        ShopList shopListSaved = shopListService.updateList(id, shopList);
+        return new ResponseEntity<>(shopListSaved, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ShopListDto> delete(@PathVariable Long id) {
+    public ResponseEntity<ShopList> delete(@PathVariable Long id) {
         if(id == null){
             throw new RuntimeException("List does not exist");
         }
-        ShopListDto shopList = shopListService.deleteList(id);
+        ShopList shopList = shopListService.deleteList(id);
         return new ResponseEntity<>(shopList, HttpStatus.OK);
     }
 

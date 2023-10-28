@@ -1,6 +1,6 @@
 package com.nocountryc14.listacheck.controller;
 
-import com.nocountryc14.listacheck.dto.BrandDto;
+import com.nocountryc14.listacheck.model.Brand;
 import com.nocountryc14.listacheck.service.IBrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,32 +21,32 @@ public class BrandController {
 
     // Create
     @PostMapping("/create")
-    public ResponseEntity<BrandDto> createBrand(@RequestBody BrandDto brandDto) throws RuntimeException{
-        if (brandDto.getBrandName() == null) {
+    public ResponseEntity<Brand> createBrand(@RequestBody Brand brand) throws RuntimeException{
+        if (brand.getBrandName() == null) {
             throw new RuntimeException("Brand must have a name");
         }
-        //BrandDto brandDtoSaved = brandService.createBrand(brandDto);
+        //BrandDto brandDtoSaved = brandService.createBrand(brand);
 
 
-        return new ResponseEntity<>(brandService.createBrand(brandDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(brandService.createBrand(brand), HttpStatus.CREATED);
     }
 
     // Get
     @GetMapping("/get")
-    public ResponseEntity<List<BrandDto>> getBrands() {
-        List<BrandDto> brandsDto = brandService.getBrands();
-        if (brandsDto.isEmpty()) {
+    public ResponseEntity<List<Brand>> getBrands() {
+        List<Brand> brands = brandService.getBrands();
+        if (brands.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(brandsDto ,HttpStatus.OK);
+            return new ResponseEntity<>(brands ,HttpStatus.OK);
         }
     }
 
 
     // Delete
     @DeleteMapping("/delete/{id_brand}")
-    public ResponseEntity<BrandDto> deleteBrand(@PathVariable Long id_brand) {
-        BrandDto brandDto = brandService.findBrandById(id_brand);
+    public ResponseEntity<Brand> deleteBrand(@PathVariable Long id_brand) {
+        Brand brandDto = brandService.findBrandById(id_brand);
         if (brandDto != null) {
             brandService.deleteBrand(id_brand);
             return new ResponseEntity<>(brandDto, HttpStatus.OK);
@@ -57,8 +57,8 @@ public class BrandController {
 
     // Find by ID
     @GetMapping("/{id_brand}")
-    public ResponseEntity<BrandDto> findBrandById(@PathVariable Long id_brand) {
-        BrandDto brandDto = brandService.findBrandById(id_brand);
+    public ResponseEntity<Brand> findBrandById(@PathVariable Long id_brand) {
+        Brand brandDto = brandService.findBrandById(id_brand);
         if (brandDto != null) {
             return new ResponseEntity<>(brandDto, HttpStatus.OK);
         } else {
@@ -68,10 +68,10 @@ public class BrandController {
 
     // Find by name
     @GetMapping("/findByName")
-    public ResponseEntity<BrandDto> findBrandByName(@RequestParam String brandName) {
-        BrandDto brandDto = brandService.findBrandByName(brandName);
-        if (brandDto != null) {
-            return new ResponseEntity<>(brandDto, HttpStatus.OK);
+    public ResponseEntity<Brand> findBrandByName(@RequestParam String brandName) {
+        Brand brand = brandService.findBrandByName(brandName);
+        if (brand != null) {
+            return new ResponseEntity<>(brand, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -79,10 +79,10 @@ public class BrandController {
 
     // Update
     @PutMapping("/update/{id_brand}")
-    public ResponseEntity<BrandDto> updateBrand (@PathVariable Long id_brand, @RequestBody BrandDto updatedBrandDto) {
-        BrandDto brandDto = brandService.updateBrand(id_brand, updatedBrandDto);
-        if (brandDto != null) {
-            return new ResponseEntity<>(brandDto, HttpStatus.OK);
+    public ResponseEntity<Brand> updateBrand (@PathVariable Long id_brand, @RequestBody Brand updatedBrand) {
+        Brand brand = brandService.updateBrand(id_brand, updatedBrand);
+        if (brand != null) {
+            return new ResponseEntity<>(brand, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

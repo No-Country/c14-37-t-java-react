@@ -1,6 +1,7 @@
 package com.nocountryc14.listacheck.controller;
 
-import com.nocountryc14.listacheck.dto.CategoryDto;
+
+import com.nocountryc14.listacheck.model.Category;
 import com.nocountryc14.listacheck.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,32 +19,32 @@ public class CategoryController {
 
     // Create
     @PostMapping("/create")
-    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) throws RuntimeException{
-        if (categoryDto.getCategoryName() == null) {
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) throws RuntimeException{
+        if (category.getCategoryName() == null) {
             throw new RuntimeException("Category must have a name");
         }
-        //categoryService.createCategory(categoryDto);
-        return new ResponseEntity<>(categoryService.createCategory(categoryDto), HttpStatus.CREATED);
+        //categoryService.createCategory(category);
+        return new ResponseEntity<>(categoryService.createCategory(category), HttpStatus.CREATED);
     }
 
     // Get
     @GetMapping("/get")
-    public ResponseEntity<List<CategoryDto>> getCategories() {
-        List<CategoryDto> categoriesDto = categoryService.getCategories();
-        if (categoriesDto.isEmpty()) {
+    public ResponseEntity<List<Category>> getCategories() {
+        List<Category> categories = categoryService.getCategories();
+        if (categories.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(categoriesDto, HttpStatus.OK);
+            return new ResponseEntity<>(categories, HttpStatus.OK);
         }
     }
 
     // Delete
     @DeleteMapping("/delete/{id_category}")
-    public ResponseEntity<CategoryDto> deleteCategory(@PathVariable Long id_category) {
-        CategoryDto categoryDto = categoryService.findCategoryById(id_category);
-        if (categoryDto != null) {
+    public ResponseEntity<Category> deleteCategory(@PathVariable Long id_category) {
+        Category category = categoryService.findCategoryById(id_category);
+        if (category != null) {
             categoryService.deleteCategory(id_category);
-            return new ResponseEntity<>(categoryDto, HttpStatus.OK);
+            return new ResponseEntity<>(category, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -51,10 +52,10 @@ public class CategoryController {
 
     // Find by ID
     @GetMapping("/{id_category}")
-    public ResponseEntity<CategoryDto> findCategoryById(@PathVariable Long id_category) {
-        CategoryDto categoryDto = categoryService.findCategoryById(id_category);
-        if (categoryDto != null) {
-            return new ResponseEntity<>(categoryDto, HttpStatus.OK);
+    public ResponseEntity<Category> findCategoryById(@PathVariable Long id_category) {
+        Category category = categoryService.findCategoryById(id_category);
+        if (category != null) {
+            return new ResponseEntity<>(category, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -62,10 +63,10 @@ public class CategoryController {
 
     // Find by name
     @GetMapping("/findByName")
-    public ResponseEntity<CategoryDto> findCategoryByName(@RequestParam String categoryName) {
-        CategoryDto categoryDto = categoryService.findCategoryByName(categoryName);
-        if (categoryDto != null) {
-            return new ResponseEntity<>(categoryDto, HttpStatus.OK);
+    public ResponseEntity<Category> findCategoryByName(@RequestParam String categoryName) {
+        Category category = categoryService.findCategoryByName(categoryName);
+        if (category != null) {
+            return new ResponseEntity<>(category, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -73,10 +74,10 @@ public class CategoryController {
 
     // Update
     @PutMapping("/update/{id_category}")
-    public ResponseEntity<CategoryDto> updateCategory (@PathVariable Long id_category, @RequestBody CategoryDto updatedCategoryDto) {
-        CategoryDto categoryDto = categoryService.updateCategory(id_category, updatedCategoryDto);
-        if (categoryDto != null) {
-            return new ResponseEntity<>(categoryDto, HttpStatus.OK);
+    public ResponseEntity<Category> updateCategory (@PathVariable Long id_category, @RequestBody Category updatedCategory) {
+        Category category = categoryService.updateCategory(id_category, updatedCategory);
+        if (category != null) {
+            return new ResponseEntity<>(category, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -1,18 +1,18 @@
 package com.nocountryc14.listacheck.service;
 
-import com.nocountryc14.listacheck.dto.UserDto;
+import com.nocountryc14.listacheck.model.User;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public interface IUserService {
-    UserDto createUser(UserDto userDto);
+    User createUser(User user);
 
-    List<UserDto> getUser();
+    List<User> getUser();
 
     void deleteUser(Long id_user);
 
-    UserDto findUserById(Long id_user);
+    User findUserById(Long id_user);
 
-    UserDto updateUser(Long id_user, UserDto updatesUserDto);
+    User updateUser(Long id_user, User updatesUser);
 }

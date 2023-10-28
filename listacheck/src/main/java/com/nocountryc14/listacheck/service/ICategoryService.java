@@ -1,7 +1,5 @@
 package com.nocountryc14.listacheck.service;
 
-import com.nocountryc14.listacheck.dto.BrandDto;
-import com.nocountryc14.listacheck.dto.CategoryDto;
 import com.nocountryc14.listacheck.model.Category;
 
 import java.util.List;
@@ -10,16 +8,16 @@ public interface ICategoryService {
 
 
     // This method is used to create a brand
-    CategoryDto createCategory(CategoryDto categoryDto);
+    Category createCategory(Category category);
 
-    List<CategoryDto> getCategories();
+    List<Category> getCategories();
 
     void deleteCategory(Long id_category);
 
-    CategoryDto findCategoryById(Long id_category);
+    Category findCategoryById(Long id_category);
 
-    CategoryDto findCategoryByName(String name);
+    Category findCategoryByName(String name);
 
-    CategoryDto updateCategory(Long id_category, CategoryDto updatedCategoryDto);
+    Category updateCategory(Long id_category, Category updatedCategory);
 
 }
