@@ -5,6 +5,7 @@ import com.nocountryc14.listacheck.model.Product;
 
 import com.nocountryc14.listacheck.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,10 +20,10 @@ public class ProductController {
 
     //create
     @PostMapping("/create")
-    public String createProduct(@RequestBody Product product) {
-        prodService.createProduct(product);
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        Product productSaved = prodService.createProduct(product);
 
-        return "The product has been created successfully.";
+        return new ResponseEntity<>(productSaved, org.springframework.http.HttpStatus.CREATED);
 
     }
 

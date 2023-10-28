@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,5 +64,28 @@ public class ShopListServiceImpl implements IListService {
         ShopList shopListSaved = listRepository.findById(listId).orElse(null);
         listRepository.deleteById(listId);
         return shopListSaved;
+    }
+
+    @Override
+    public ShopList addProductToList(Long listId, Product product) {
+        Product productSaved = productService.createProduct(product);
+
+        ShopList shopList = listRepository.findById(listId).orElse(null);
+        List<Product> products = shopList.getProducts();
+        products.add(productSaved);
+        shopList.setProducts(products);
+        ShopList shopListSaved = listRepository.save(shopList);
+        return shopListSaved;
+        /*
+        ShopList shopListCreated = listRepository.save(shopList);
+        ArrayList<Product> products = new ArrayList<>();
+        for (Product product: shopListCreated.getProducts()
+             ) {
+            products.add(productService.findProductById(product.getId_product()));
+        }
+        shopListCreated.setProducts(products);
+        return shopListCreated;
+         */
+
     }
 }

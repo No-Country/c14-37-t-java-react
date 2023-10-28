@@ -4,6 +4,8 @@ package com.nocountryc14.listacheck.controller;
 import com.nocountryc14.listacheck.model.User;
 import com.nocountryc14.listacheck.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,10 +19,10 @@ private IUserService userService;
 
 //CREAR
     @PostMapping("/create")
-    public String createUser(@RequestBody User user){
-      userService.createUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user){
+      User userSaved = userService.createUser(user);
         //devuelvo String q se creo correctamente
-      return "El usuario fue creado correctamente";
+      return new ResponseEntity<>(userSaved, HttpStatus.CREATED);
     }
 
 //consulta-read

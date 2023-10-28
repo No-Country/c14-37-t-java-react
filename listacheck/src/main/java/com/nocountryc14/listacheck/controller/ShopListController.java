@@ -1,5 +1,6 @@
 package com.nocountryc14.listacheck.controller;
 
+import com.nocountryc14.listacheck.model.Product;
 import com.nocountryc14.listacheck.model.ShopList;
 import com.nocountryc14.listacheck.service.IListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,14 @@ public class ShopListController {
         ShopList shopList = shopListService.deleteList(id);
         return new ResponseEntity<>(shopList, HttpStatus.OK);
     }
-
+    @PostMapping("/{listId}/addProduct")
+    public ResponseEntity<ShopList> addProductToShopList(@PathVariable Long listId, @RequestBody Product product) {
+        if(listId == null || product == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        ShopList shopListSaved = shopListService.addProductToList(listId, product);
+        return new ResponseEntity<>(shopListSaved, HttpStatus.OK);
+    }
 
 
 }
