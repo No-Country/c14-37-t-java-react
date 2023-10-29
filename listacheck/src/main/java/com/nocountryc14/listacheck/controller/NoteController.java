@@ -29,9 +29,9 @@ public class NoteController {
     // Get
     @GetMapping("/get")
     public ResponseEntity<List<Note>> getNotes() {
-        List<Note> notesDto = noteService.getNotes();
-        if (notesDto.isEmpty()) {
-            return new ResponseEntity<>(notesDto, HttpStatus.NO_CONTENT);
+        List<Note> notes = noteService.getNotes();
+        if (notes.isEmpty()) {
+            return new ResponseEntity<>(notes, HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.OK);
         }

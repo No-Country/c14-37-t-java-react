@@ -27,4 +27,5 @@ public interface IProductService {
     Product updateProduct(Long id_product, Product updatedProduct);
 
 
+    Product toggleIsBought(Long productId);
 }

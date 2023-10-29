@@ -1,6 +1,8 @@
 package com.nocountryc14.listacheck.service.implementation;
 
 
+import com.nocountryc14.listacheck.model.Brand;
+import com.nocountryc14.listacheck.model.Note;
 import com.nocountryc14.listacheck.model.Product;
 import com.nocountryc14.listacheck.repository.IProductRepository;
 import com.nocountryc14.listacheck.service.IBrandService;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,7 +40,20 @@ public class ProductServiceImpl implements IProductService {
     public Product createProduct(Product product) {
 
         System.out.println("product in create product service: "+product);
+        if(product.getBrand() != null){
+            Brand brandSaved = brandService.createBrand(product.getBrand());
+            product.setBrand(brandSaved);
+        }
+        if(product.getNote() != null ){
+            Note noteSaved = noteService.createNote(product.getNote());
+            product.setNote(noteSaved);
+        }
+        if(product.getCategory() != null){
+            product.setCategory(categoryService.createCategory(product.getCategory()));
+        }
+
         Product saveProduct = prodRepository.save(product);
+        /* Para mi no serian necesarias
         saveProduct.setNote(
                 noteService.findNoteById(saveProduct.getNote().getNoteId())
         );
@@ -47,6 +63,8 @@ public class ProductServiceImpl implements IProductService {
         saveProduct.setCategory(
                 categoryService.findCategoryById(saveProduct.getCategory().getCategoryId())
         );
+
+         */
         return saveProduct;
     }
 
@@ -85,5 +103,20 @@ public class ProductServiceImpl implements IProductService {
             return null;
         }
 
+    }
+
+    @Override
+    public Product toggleIsBought(Long productId) {
+        Optional<Product> productSaved = prodRepository.findById(productId);
+        if(productSaved.isPresent()){
+            if(productSaved.get().isBought()){
+                productSaved.get().setBought(false);
+            }else{
+                productSaved.get().setBought(true);
+            }
+
+            return prodRepository.save(productSaved.get());
+        }
+        return null;
     }
 }

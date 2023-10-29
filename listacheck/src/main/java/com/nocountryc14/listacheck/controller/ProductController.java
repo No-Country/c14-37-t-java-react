@@ -81,6 +81,11 @@ public class ProductController {
             return "There is no product with this ID to update.";
         }
     }
+    @PutMapping("/{productId}/togglePurchase")
+    public ResponseEntity<Product> toggleIsBought(@PathVariable Long productId) {
+        Product updatedProduct = prodService.toggleIsBought(productId);
+        return ResponseEntity.ok(updatedProduct);
+    }
 
 
 }

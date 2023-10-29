@@ -25,7 +25,7 @@ public class BrandController {
         if (brand.getBrandName() == null) {
             throw new RuntimeException("Brand must have a name");
         }
-        //BrandDto brandDtoSaved = brandService.createBrand(brand);
+        //brand brandSaved = brandService.createBrand(brand);
 
 
         return new ResponseEntity<>(brandService.createBrand(brand), HttpStatus.CREATED);
@@ -46,10 +46,10 @@ public class BrandController {
     // Delete
     @DeleteMapping("/delete/{id_brand}")
     public ResponseEntity<Brand> deleteBrand(@PathVariable Long id_brand) {
-        Brand brandDto = brandService.findBrandById(id_brand);
-        if (brandDto != null) {
+        Brand brand = brandService.findBrandById(id_brand);
+        if (brand != null) {
             brandService.deleteBrand(id_brand);
-            return new ResponseEntity<>(brandDto, HttpStatus.OK);
+            return new ResponseEntity<>(brand, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -58,9 +58,9 @@ public class BrandController {
     // Find by ID
     @GetMapping("/{id_brand}")
     public ResponseEntity<Brand> findBrandById(@PathVariable Long id_brand) {
-        Brand brandDto = brandService.findBrandById(id_brand);
-        if (brandDto != null) {
-            return new ResponseEntity<>(brandDto, HttpStatus.OK);
+        Brand brand = brandService.findBrandById(id_brand);
+        if (brand != null) {
+            return new ResponseEntity<>(brand, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
