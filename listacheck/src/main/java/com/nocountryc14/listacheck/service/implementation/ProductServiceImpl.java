@@ -2,6 +2,7 @@ package com.nocountryc14.listacheck.service.implementation;
 
 
 import com.nocountryc14.listacheck.model.Brand;
+import com.nocountryc14.listacheck.model.Category;
 import com.nocountryc14.listacheck.model.Note;
 import com.nocountryc14.listacheck.model.Product;
 import com.nocountryc14.listacheck.repository.IProductRepository;
@@ -93,16 +94,49 @@ public class ProductServiceImpl implements IProductService {
     // This method is used to update a product by ID.
     @Override
     public Product updateProduct(Long id_product, Product updatedProduct) {
+        Boolean check = false;
         Product existingProduct = prodRepository.findById(id_product).orElse(null);
 
-        if (existingProduct != null) {
-            existingProduct.setName_product(updatedProduct.getName_product());
-            Product savedProduct = prodRepository.save(existingProduct);
-            return savedProduct;
-        }else {
-            return null;
-        }
+        existingProduct.setName_product(updatedProduct.getName_product());
+        existingProduct.setQuantity(updatedProduct.getQuantity());
 
+        Brand brand = updatedProduct.getBrand();
+        List<Brand> brands = brandService.getBrands();
+        for (Brand brand1: brands) {
+            if (brand.getBrandName().equalsIgnoreCase(brand1.getBrandName())) {
+                existingProduct.setBrand(brand1);
+                check = true;
+                break;
+            }
+        }
+        if (!check) {
+            brandService.createBrand(brand);
+            existingProduct.setBrand(brand);
+        }
+        check = false;
+
+        Category category = updatedProduct.getCategory();
+        List<Category> categories = categoryService.getCategories();
+        for (Category category1: categories) {
+            if (category.getCategoryName().equalsIgnoreCase(category1.getCategoryName())) {
+                existingProduct.setCategory(category1);
+                check = true;
+                break;
+            }
+        }
+        if (!check) {
+            categoryService.createCategory(category);
+            existingProduct.setCategory(category);
+        }
+        check = false;
+
+        Note note = updatedProduct.getNote();
+        List<Note> notes = noteService.getNotes();
+
+            noteService.createNote(note);
+            existingProduct.setNote(note);
+
+        return prodRepository.save(existingProduct);
     }
 
     @Override
