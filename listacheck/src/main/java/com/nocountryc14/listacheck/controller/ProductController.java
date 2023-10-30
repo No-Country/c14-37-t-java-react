@@ -51,8 +51,6 @@ public class ProductController {
         } else {
             return "There is no product with this ID to delete.";
         }
-
-
     }
 
     // Find by ID
