@@ -19,6 +19,10 @@ import { Register } from "../components/users/Register";
 import { AuthProvider } from "../context/AuthProvider";
 import { Logout } from "../components/users/Logout";
 import { Config } from "../components/users/Config";
+import { MiLista } from "../components/pages/MiLista";
+
+
+
 
 export const Rutas = () => {
   return (
@@ -37,6 +41,7 @@ export const Rutas = () => {
             <Route index element={<Inicio />} />
             <Route path="inicio" element={<Inicio />} />
             <Route path="quienessomos" element={<Quienessomos />} />
+            <Route path="mislistas/:memberId" element={<MiLista />} />
             {/*       <Route path="/miperfil" element={<MiPerfil />} />
           <Route path="/mislistas" element={<Mislistas />} /> */}
             <Route path="contacto" element={<Contacto />} />
@@ -49,7 +54,13 @@ export const Rutas = () => {
           <Route index element={<Mislistas/>} />
           <Route path="miperfil" element={<MiPerfil />} />
           <Route path="inicio" element={<Inicio />} />
+          
+          
+{/*
+
           <Route path="mislistas" element={<Mislistas />} />
+*/}
+         
           <Route path="quienessomos" element={<Quienessomos />} />
           <Route path="contacto" element={<Contacto />} />
           <Route path="logout" element={<Logout/>} />
