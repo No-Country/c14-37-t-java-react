@@ -48,15 +48,19 @@ public class ShopListServiceImpl implements IListService {
     public List<ShopList> getAllLists() {
         List<ShopList> shopLists = listRepository.findAll();
 
-
         return shopLists;
     }
 
     @Override
-    public ShopList updateList(Long listId, ShopList shopList) {
-        ShopList shopListSaved = listRepository.findById(listId).orElse(null);
+    public ShopList updateList(Long listId, ShopList updatedShopList) {
+        ShopList existingShopList = listRepository.findById(listId).orElse(null);
 
-        return shopListSaved;
+        if (existingShopList != null) {
+            existingShopList.setShopListName(updatedShopList.getShopListName());
+            return listRepository.save(existingShopList);
+        }else {
+            return null;
+        }
     }
 
     @Override
