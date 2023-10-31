@@ -14,6 +14,13 @@
 	<name>listacheck</name>
 	<description>Demo project for Spring Boot</description>
 
+	<distributionManagement>
+		<repository>
+			<id>935</id>
+			<url>https://api.render.com/deploy/srv-cl0g242s1bgc73aagmvg?key=Ac9hEr4AbL8</url>
+		</repository>
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
