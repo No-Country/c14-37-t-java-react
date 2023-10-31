@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /out/listacheck-0.0.1-SNAPSHOT.jar listacheck.jar
+COPY --from=build /target/listacheck-0.0.1-SNAPSHOT.jar listacheck.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","listacheck.jar"]
