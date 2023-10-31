@@ -14,10 +14,6 @@
 	<name>listacheck</name>
 	<description>Demo project for Spring Boot</description>
 
-	<properties>
-		<java.version>17</java.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -60,6 +56,7 @@
 			<version>2.2.0</version>
 		</dependency>
 
+
 	</dependencies>
 
 	<build>
@@ -76,6 +73,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 
