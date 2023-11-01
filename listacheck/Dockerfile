@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17.0.9-jre
+FROM eclipse-temurin:17-jdk-alpine
 COPY target/*.jar listacheck.jar
 ENTRYPOINT ["java", "-jar", "/listacheck.jar"]
 EXPOSE 8080
