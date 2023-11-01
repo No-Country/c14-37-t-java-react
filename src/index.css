@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 /* .navigation-c, .navigation-c * {
     box-sizing: border-box;
     }
@@ -228,6 +226,9 @@
  */
 
 /*ESTILOS GENERALES*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   background: #fffffd;
@@ -2103,4 +2104,13 @@ left: -11px;
 
 .fa-solid fa-arrow-right-from-bracket{
   background-color: blue;
+}
+.todo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.new-todo {
+  width: 100%;
+  padding-right: 30px;
 }

@@ -9,10 +9,10 @@ function App() {
 
   return (
     
-      <div className='App'>
+      <div  className="flex flex-col">
         
 
-      <Rutas/>
+        <Rutas/>
        
       </div>
      
