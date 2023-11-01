@@ -31,9 +31,9 @@ public class NoteController {
     public ResponseEntity<List<Note>> getNotes() {
         List<Note> notes = noteService.getNotes();
         if (notes.isEmpty()) {
-            return new ResponseEntity<>(notes, HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(notes, HttpStatus.OK);
         }
     }
 
