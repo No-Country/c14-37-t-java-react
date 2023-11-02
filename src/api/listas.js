@@ -3,11 +3,11 @@ import axios from "axios"
 
 export function getLists() {
   return axios
-    .get("http://localhost:8080/shoplist", { params: { _sort: "title" } })
+    .get("https://localhost:8080/shoplist", { params: { _sort: "title" } })
     .then(res => res.data)
 }
 export function getList(id) {
-  return axios.get(`http://localhost:8080/shoplist/${id}`).then(res => res.data)
+  return axios.get(`https://localhost:8080/shoplist/${id}`).then(res => res.data)
 }
 export function getPosts() {
   return axios
