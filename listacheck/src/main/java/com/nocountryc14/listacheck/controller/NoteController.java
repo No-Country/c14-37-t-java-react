@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.PUT,
-        RequestMethod.GET, RequestMethod.DELETE})
+//@CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.PUT,
+//        RequestMethod.GET, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/note")
 public class NoteController {
