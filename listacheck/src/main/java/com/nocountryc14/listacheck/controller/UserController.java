@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.PUT,
+        RequestMethod.GET, RequestMethod.DELETE})
 @RestController
 @RequestMapping("/user")
 public class UserController {

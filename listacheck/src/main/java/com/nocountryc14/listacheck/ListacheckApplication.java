@@ -33,6 +33,7 @@ public class ListacheckApplication {
     }
 
 
+    /*
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -47,6 +48,8 @@ public class ListacheckApplication {
             }
         };
     }
+    */
+
 
 
 }
