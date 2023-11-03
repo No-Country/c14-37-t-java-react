@@ -1,3 +1,3 @@
 ﻿# c14-37-t-java-react
 
-Documentacion del Proyecto: https://drive.google.com/drive/folders/1vbCm4cYpUeujfw5YTr4azM4d-op1E1rt?usp=drive_link
+Documentacion del Proyecto: https://docs.google.com/document/d/13wIPBCCzw-se-PNZSSrYPzjtXP433N0U/edit?usp=drive_link
