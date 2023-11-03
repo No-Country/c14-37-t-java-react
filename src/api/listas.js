@@ -3,11 +3,14 @@ import axios from "axios"
 
 export function getLists() {
   return axios
-    .get("https://localhost:8080/shoplist", { params: { _sort: "title" } })
+    .get("http://localhost:8080/shoplist", { params: { _sort: "title" } })
     .then(res => res.data)
 }
 export function getList(id) {
-  return axios.get(`https://localhost:8080/shoplist/${id}`).then(res => res.data)
+  //const url = `https://listacheck.onrender.com/shoplist/${id}`
+  const url = `http://localhost:8080/shoplist/${id}`
+  console.log(url)
+  return axios.get(url).then(res => res.data)
 }
 export function getPosts() {
   return axios
