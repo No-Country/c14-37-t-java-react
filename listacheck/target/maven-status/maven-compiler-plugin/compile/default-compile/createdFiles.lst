@@ -29,3 +29,4 @@ com\nocountryc14\listacheck\controller\CategoryController.class
 com\nocountryc14\listacheck\controller\ProductController.class
 com\nocountryc14\listacheck\service\implementation\UserService.class
 com\nocountryc14\listacheck\model\Brand.class
+com\nocountryc14\listacheck\ListacheckApplication$1.class

@@ -8,11 +8,12 @@
 		<version>3.1.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.nocountryc14</groupId>
 	<artifactId>listacheck</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>listacheck</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for Spring Boot 2</description>
 
 
 	<dependencies>
