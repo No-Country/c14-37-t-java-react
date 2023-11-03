@@ -45,9 +45,9 @@ export const MiLista = () => {
   };
 
   const newItemSection = (
-    <form onSubmit={handleSubmit} className=" border-solid border-cyan-500">
+    <form onSubmit={handleSubmit} className=" border-solid border-cyan-500 ">
       <label htmlFor="new-todo">Ingrese un nuevo producto a la lista</label>
-      <div className="flex w-full gap-3 border-red-500">
+      <div className="flex w-full gap-3 border-red-500  justify-between  mt-10">
 
         <div className="text-red-400">
           <input
@@ -103,9 +103,9 @@ export const MiLista = () => {
   );
   
   return (
-    <div className="flex border-solid border-2 border-sky-500 rounded-md m-5" >
+    <div className="flex border-solid border-2 border-sky-500  rounded-3xl m-5 " >
       <div className="w-full">
-        <h1 className="bg-sky-600 rounded-md m-5 text-white mx-60">
+        <h1 className="bg-blue-400 h-10  rounded-3xl m-5 text-white mx-60">
           {listQuery.status === "success" &&
             listQuery.data.shopListName}
         </h1>
@@ -114,24 +114,85 @@ export const MiLista = () => {
           {memberId} Esta es la lista de {memberId}
         </p>
         {newItemSection}
+        <br></br>
+
+<hr className="my-6 border-t-2  border-black" />
+  <br></br>
         <ul className="w-full">
           {listQuery.status === "success" &&
             listQuery.data.products.map((list) => (
-              <li key={list.id_product} className="w-full border-solid border-2 border-sky-500">
-                <div className="columns-6  justify-around">
+              <li key={list.id_product} className="w-full  border-2  border-hidden border-sky-500">
+                <div className=" columns-8   flex justify-between items-center">
                   <input
                     type="checkbox"
                     checked={list.bought}
                     id={list.id_product}
                   />
-                  <div>{list.name_product}</div>
+                  <div className="  rounded-xl bg-yellow-200 my-5 border-solid border-2 border-black ">{list.name_product}</div>
+
                   <div>{list.quantity}</div>
                   <div>{list.category.categoryName}</div>
                   <div>{list.brand.brandName}</div>
-                  <div>{list.note.noteField}</div>
+                  <div>{list.note.noteField}
+
+                  </div>
+                  <img className="  h-5 mr-0" src="/src/assets/img/Trash.png" alt="Texto alternativo de la imagen"/>
+                  <img className="  h-5 mr-0" src="/src/assets/img/Pencil.png" alt="Texto alternativo de la imagen"/>
+
+
                 </div>
               </li>
+
+
+
+
+
+
             ))}
+
+<br></br>
+
+<hr className="my-6 border-t-2 border-black" />
+  <br></br>
+
+  <input type="checkbox" className="    mr-96" />
+
+  {listQuery.status === "success" &&
+            listQuery.data.products.map((list) => (
+              <li key={list.id_product} className="w-full border-2 border-hidden border-sky-500">
+                 <div className=" columns-8   flex justify-between items-center">
+                  <input
+                    type="checkbox"
+                    checked={list.bought}
+                    id={list.id_product}
+                  />
+                  <div className="  rounded-xl bg-blue-300 my-5 border-solid border-2 border-black ">{list.name_product}</div>
+
+                  <div>{list.quantity}</div>
+                  <div>{list.category.categoryName}</div>
+                  <div>{list.brand.brandName}</div>
+                  <div>{list.note.noteField}
+
+                  </div>
+                  <img className="  h-5 mr-0" src="/src/assets/img/Trash.png" alt="Texto alternativo de la imagen"/>
+                  <img className="  h-5 mr-0" src="/src/assets/img/Pencil.png" alt="Texto alternativo de la imagen"/>
+
+
+                </div>
+              </li>
+
+
+
+
+
+
+            ))}
+
+
+
+
+            
+
         </ul>
       </div>
     </div>
